@@ -5,7 +5,9 @@ const CONFIDENCE_LEVEL = 0.5;
 exports.analyzeNlp = function getNlpResults(message) {
 	if (message && message.message && message.message.nlp) {
 		const requiredNLPResults = message.message.nlp;
-		console.log('requiredNLPResults' + requiredNLPResults);
+
+		str = JSON.stringify(requiredNLPResults, null, 4); // (Optional) beautiful indented output.
+		console.log('requiredNLPResults' + str);
 		// filterUnConfident(requiredNLPResults, CONFIDENCE_LEVEL);
 		return requiredNLPResults;
 	}
