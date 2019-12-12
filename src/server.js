@@ -1,6 +1,6 @@
 'use strict';
 
-const messengerWindow = require('./Services/Gateways/Facebook/messenger_window.js');
+const messengerWindow = require('../Services/Gateways/Facebook/messenger_window.js');
 
 // Imports dependencies and set up http server
 const express = require('express'),
