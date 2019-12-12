@@ -1,1 +1,14 @@
-node_modules
+# ignore jetbrains files
+.idea
+
+# ignore node modules
+node_modules/
+
+# javascript files
+package-lock.json
+
+# files and folders
+Objects_Examples/
+
+# database
+.data/
