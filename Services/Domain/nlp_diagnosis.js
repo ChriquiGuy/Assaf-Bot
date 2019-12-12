@@ -6,7 +6,7 @@ exports.analyzeNlp = function getNlpResults(message) {
 	if (message && message.message && message.message.nlp) {
 		const requiredNLPResults = message.message.nlp;
 
-		str = JSON.stringify(requiredNLPResults, null, 4); // (Optional) beautiful indented output.
+		const str = JSON.stringify(requiredNLPResults, null, 4); // (Optional) beautiful indented output.
 		console.log('requiredNLPResults' + str);
 		// filterUnConfident(requiredNLPResults, CONFIDENCE_LEVEL);
 		return requiredNLPResults;
