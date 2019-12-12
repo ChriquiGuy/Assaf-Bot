@@ -1,6 +1,7 @@
 'use strict';
 
 const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_ultis');
+const nlp_diagnosis = require('../Services/Domain/nlp_diagnosis');
 
 exports.processMessage = function(senderPSID, message) {
 	logMessageText(senderPSID, message);
@@ -14,4 +15,6 @@ exports.processMessage = function(senderPSID, message) {
 function logMessageText(senderPSID, message) {
 	const text = incomingMessageUtils.getTextFromMessage(message);
 	console.log(`PSID: ${senderPSID}, sent a message: ${text}`);
+	let diagnosis = nlp_diagnosis.analyzeNlp(message);
+	console.log('Message diagnosis: ' + diagnosis);
 }
