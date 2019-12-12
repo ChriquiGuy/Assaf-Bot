@@ -2,7 +2,7 @@
 
 const CONFIDENCE_LEVEL = 0.5;
 
-exports.analyzeNlp = function getNlpResults(message, nlpType) {
+exports.analyzeNlp = function getNlpResults(message) {
 	if (message && message.message && message.message.nlp) {
 		const requiredNLPResults = message.message.nlp;
 		filterUnConfident(requiredNLPResults, CONFIDENCE_LEVEL);

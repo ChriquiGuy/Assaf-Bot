@@ -15,6 +15,6 @@ exports.processMessage = function(senderPSID, message) {
 function logMessageText(senderPSID, message) {
 	const text = incomingMessageUtils.getTextFromMessage(message);
 	console.log(`PSID: ${senderPSID}, sent a message: ${text}`);
-	let diagnosis = nlp_diagnosis.analyzeNlp(message);
+	const diagnosis = nlp_diagnosis.analyzeNlp(message);
 	console.log('Message diagnosis: ' + diagnosis);
 }
