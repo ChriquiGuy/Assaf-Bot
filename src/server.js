@@ -1,5 +1,7 @@
 'use strict';
 
+const messengerWindow = require('./Services/Gateways/Facebook/messenger_window.js');
+
 // Imports dependencies and set up http server
 const express = require('express'),
 	bodyParser = require('body-parser'),
@@ -62,3 +64,5 @@ app.get('/webhook', (req, res) => {
 		}
 	}
 });
+
+messengerWindow.initMessengerWindow();
