@@ -1,6 +1,6 @@
 'use strict';
 
-const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_utils');
+const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_ultis');
 
 exports.processMessage = function(senderPSID, message) {
 	logMessageText(senderPSID, message);

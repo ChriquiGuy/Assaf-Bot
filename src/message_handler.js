@@ -1,7 +1,7 @@
 'use strict';
 
 const request = require('request');
-const flowManager = require('./flow_manager');
+const flowManager = require('./flow_manger');
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(received_message) {
@@ -14,7 +14,7 @@ exports.handleIncomingMessage = function(received_message) {
 exports.sendMessage = function callSendAPI(sender_psid, response, callback) {
 	const request_body = createRequestBody(sender_psid, response);
 
-	// Send the HTTP request to the Messenger Platform
+	// Send the HTTP request to the Messenger Platform`
 	request(
 		{
 			uri: 'https://graph.facebook.com/v2.6/me/messages',
