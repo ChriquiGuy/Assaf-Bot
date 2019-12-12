@@ -1,5 +1,6 @@
 'use strict';
 
+const messageHandler = require('./message_handler');
 const messengerWindow = require('../Services/Gateways/Facebook/messenger_window.js');
 
 // Imports dependencies and set up http server
@@ -13,7 +14,7 @@ app.listen(port, () => console.log('webhook is listening on port: ' + port));
 
 // Server index page
 app.get('/', function(req, res) {
-	res.send('Deployed!');
+	res.send('In development');
 });
 
 // Creates the endpoint for our webhook
@@ -27,9 +28,9 @@ app.post('/webhook', (req, res) => {
 			// Gets the message. entry.messaging is an array, but
 			// will only ever contain one message, so we get index 0
 			let webhook_event = entry.messaging[0];
-			console.log(webhook_event);
+			// Pass the event to the handler function
+			messageHandler.handleIncomingMessage(webhook_event);
 		});
-
 		// Returns a '200 OK' response to all requests
 		res.status(200).send('EVENT_RECEIVED');
 	} else {
@@ -42,9 +43,6 @@ app.post('/webhook', (req, res) => {
 app.get('/webhook', (req, res) => {
 	// Your verify token. Should be a random string.
 	let TOKEN = process.env.VERIFICATION_TOKEN;
-
-	console.log('TOKEN: ' + TOKEN);
-
 	// Parse the query params
 	let mode = req.query['hub.mode'];
 	let token = req.query['hub.verify_token'];
