@@ -45,7 +45,7 @@ exports.initMessengerWindow = function() {
 
 	function callback(error, response, body) {
 		if (!error && response.statusCode == 200) {
-			console.log("Setting: Menu, 'Get Started' button, and Welcome Messages was completed successfully.");
+			// console.log("Setting: Menu, 'Get Started' button, and Welcome Messages was completed successfully.");
 		} else if (error) {
 			console.error(`Failed to init :\n${JSON.stringify(error, null, 4)}`);
 		}
