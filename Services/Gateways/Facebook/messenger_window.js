@@ -18,7 +18,7 @@ exports.initMessengerWindow = function() {
 		greeting: [
 			{
 				locale: 'default',
-				text: 'שלום {{user_first_name}}, לחץ על הכפתור בכדי להתחיל'
+				text: 'לחצו על הכפתור בכדי להתחיל'
 			}
 		],
 		persistent_menu: [
