@@ -4,10 +4,6 @@ const request = require('request'),
 	constants = require('../../../constants');
 
 /*
-TODO
-1. set welcome screen
-TODO
-2. add more options to the persistence menu
 instructions:
 https://developers.facebook.com/docs/messenger-platform/introduction/conversation-components/#welcome_screen
  */
@@ -22,7 +18,7 @@ exports.initMessengerWindow = function() {
 		greeting: [
 			{
 				locale: 'default',
-				text: 'לחצו על הכפתור בכדי להתחיל'
+				text: 'שלום {{user_first_name}}, לחץ על הכפתור בכדי להתחיל'
 			}
 		],
 		persistent_menu: [
