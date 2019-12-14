@@ -4,14 +4,14 @@ const facebook = require('fb-messenger-bot-api');
 
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
-exports.markTyping = function(senderPSID, message) {
-	messageClient.toggleTyping(senderPSID, true);
+exports.markTyping = function(senderID, message) {
+	messageClient.toggleTyping(senderID, true);
 	wait.for.time(calculateWaitTime(message));
-	messageClient.toggleTyping(senderPSID, false);
+	messageClient.toggleTyping(senderID, false);
 };
 
-exports.markSeen = function(senderPSID, incomingMeassage) {
-	messageClient.markSeen(senderPSID);
+exports.markSeen = function(senderID, incomingMeassage) {
+	messageClient.markSeen(senderID);
 	const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
 	wait.for.time(calculateWaitTime(incomingMeassageString));
 };

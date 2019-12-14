@@ -7,4 +7,6 @@ exports.matchPattern = function(message) {
 	if (message === 'GET_STARTED') {
 		return require('../../Patterns/greeting_pattern');
 	}
+
+	return undefined;
 };
