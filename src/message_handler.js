@@ -1,7 +1,7 @@
 'use strict';
 
 const request = require('request');
-const responseManager = require('./flow_manger');
+const responseManager = require('./response_manger');
 const messengerAction = require('../Utils/MessageUtils/sender_actions');
 
 // Handles incoming messages
