@@ -1,16 +1,19 @@
 const request = require('request');
 const wait = require('wait-for-stuff');
 const incomingMessageUtils = require('../MessageUtils/incoming_message_ultis');
+const facebook = require('fb-messenger-bot-api');
 
 exports.markTyping = function(senderPSID, message) {
-	runAction(senderPSID, 'typing_on');
+	facebook.messageClient.toggleTyping(senderId, true);
+	// runAction(senderPSID, 'typing_on');
 	// wait.for.time(calculateWaitTime(message));
-	runAction(senderPSID, 'typing_off');
+	// runAction(senderPSID, 'typing_off');
 };
 
 exports.markSeen = function(senderPSID, incomingMeassage) {
-	runAction(senderPSID, 'mark_seen');
-	const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
+	facebook.messageClient.markSeen(senderPSID);
+	// runAction(senderPSID, 'mark_seen');
+	// const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
 	// wait.for.time(calculateWaitTime(incomingMeassageString));
 };
 
@@ -27,7 +30,7 @@ function runAction(senderPSID, action) {
 		recipient: {
 			id: senderPSID
 		},
-		sender_action: 'mark_seen'
+		sender_action: action
 	};
 
 	var options = {

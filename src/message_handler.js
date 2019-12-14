@@ -29,7 +29,7 @@ exports.handleIncomingMessage = function(received_message) {
 const sendMessage = function callSendAPI(sender_psid, response, callback) {
 	const request_body = createRequestBody(sender_psid, response);
 	//! Need fix
-	// messengerAction.markTyping(sender_psid, response.text);
+	messengerAction.markTyping(sender_psid, response.text);
 	// Send the HTTP request to the Messenger Platform`
 	request(
 		{
