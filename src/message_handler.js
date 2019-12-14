@@ -14,7 +14,7 @@ exports.handleIncomingMessage = function(received_message) {
 		console.log('Response : ' + response.text);
 		// Mark message as seen and wait 'x' amount of time before response back (reading time)
 		//! Need fix
-		// messengerAction.markSeen(senderPSID, received_message);
+		messengerAction.markSeen(senderPSID, received_message);
 		// If appropriate response found, send it to the client
 		sendMessage(senderPSID, response);
 	} else {
