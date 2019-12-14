@@ -4,14 +4,14 @@ const incomingMessageUtils = require('../MessageUtils/incoming_message_ultis');
 
 exports.markTyping = function(senderPSID, message) {
 	runAction(senderPSID, 'typing_on');
-	wait.for.time(calculateWaitTime(message));
+	// wait.for.time(calculateWaitTime(message));
 	runAction(senderPSID, 'typing_off');
 };
 
 exports.markSeen = function(senderPSID, incomingMeassage) {
 	runAction(senderPSID, 'mark_seen');
 	const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
-	wait.for.time(calculateWaitTime(incomingMeassageString));
+	// wait.for.time(calculateWaitTime(incomingMeassageString));
 };
 
 function calculateWaitTime(message) {
