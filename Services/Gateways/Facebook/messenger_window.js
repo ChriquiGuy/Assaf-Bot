@@ -16,9 +16,8 @@ exports.initMessengerWindow = function() {
 
 // Return persistent_menu object
 function getPersistentMenuObject() {
-	return;
-	{
-		'persistent_menu'[
+	return {
+		persistent_menu: [
 			{
 				locale: 'default',
 				composer_input_disabled: false,
@@ -41,6 +40,6 @@ function getPersistentMenuObject() {
 					}
 				]
 			}
-		];
-	}
+		]
+	};
 }
