@@ -1,6 +1,6 @@
 'use strict';
-
 const constants = require('../../../constants');
+const facebook = require('fb-messenger-bot-api');
 const profileClient = new facebook.FacebookProfileAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 exports.initMessengerWindow = function() {
