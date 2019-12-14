@@ -9,9 +9,9 @@ const outgoingMessageUtils = require('../Utils/MessageUtils/outgoing_message_ult
 Check to which pattern incoming message belong to
 Then return the appropriate response to the message
 */
-exports.processMessage = function(senderID, message) {
+exports.processMessage = function(senderId, message) {
 	const messageText = incomingMessageUtils.getTextFromMessage(message);
-	logMessageText(senderID, messageText);
+	logMessageText(senderId, messageText);
 
 	// Find to which pattern the incoming message belong to
 	const pattern = patternMatching.matchPattern(messageText);
@@ -23,6 +23,6 @@ exports.processMessage = function(senderID, message) {
 };
 
 // Log to console the incoming message
-function logMessageText(senderID, message) {
-	console.log(`Incoming message from PSID: ${senderID}.\nMessage: ${message}.`);
+function logMessageText(senderId, message) {
+	console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${message}.`);
 }

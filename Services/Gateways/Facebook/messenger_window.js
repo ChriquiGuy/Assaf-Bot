@@ -8,10 +8,10 @@ exports.initMessengerWindow = function() {
 	profileClient.setGreetingMessage('לחץ על הכפתור בכדי להתחיל').then((result) => {});
 
 	// Setting Get Started button
-	profileClient.setGetStartedAction(senderId, 'GET_STARTED').then((result) => {});
+	profileClient.setGetStartedAction(undefined, 'GET_STARTED').then((result) => {});
 
 	// Setting Persistent Menu
-	profileClient.setPersistentMenu(senderId, [ getPersistentMenuObject() ]).then((result) => {});
+	profileClient.setPersistentMenu(undefined, [ getPersistentMenuObject() ]).then((result) => {});
 };
 
 // Return persistent_menu object

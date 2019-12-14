@@ -5,15 +5,15 @@ const facebook = require('fb-messenger-bot-api');
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 // Mark typing and wait 'x' amount of time before disable typing (writing time)
-exports.markTyping = function(senderID, message) {
-	messageClient.toggleTyping(senderID, true);
+exports.markTyping = function(senderId, message) {
+	messageClient.toggleTyping(senderId, true);
 	wait.for.time(calculateWaitTime(message));
-	messageClient.toggleTyping(senderID, false);
+	messageClient.toggleTyping(senderId, false);
 };
 
 // Wait 'x' amount of time (reading time) and then mark message as seen
-exports.markSeen = function(senderID, incomingMeassage) {
-	messageClient.markSeen(senderID);
+exports.markSeen = function(senderId, incomingMeassage) {
+	messageClient.markSeen(senderId);
 	const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
 	wait.for.time(calculateWaitTime(incomingMeassageString));
 };

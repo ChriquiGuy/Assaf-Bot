@@ -7,16 +7,16 @@ const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_A
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(received_message) {
-	const senderID = received_message.sender.id;
+	const senderId = received_message.sender.id;
 
 	// Get response to the incoming message
-	let response = responseManager.processMessage(senderID, received_message);
+	let response = responseManager.processMessage(senderId, received_message);
 	if (response) {
 		console.log('Response : ' + response);
 		// Mark message as seen and wait 'x' amount of time before response back (reading time)
-		messengerAction.markSeen(senderID, received_message);
+		messengerAction.markSeen(senderId, received_message);
 		// If appropriate response found, send it to the client
-		sendMessage(senderID, response);
+		sendMessage(senderId, response);
 	} else {
 		// If not, transfer handling to human
 		// TODO : add human handeling
