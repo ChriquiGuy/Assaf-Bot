@@ -10,7 +10,6 @@ exports.handleIncomingMessage = function(received_message) {
 
 	// Get response to the incoming message
 	let response = responseManager.processMessage(senderPSID, received_message);
-
 	if (response) {
 		// Mark message as seen and wait 'x' amount of time before response back (reading time)
 		messengerAction.markSeen(senderPSID, received_message);
@@ -19,7 +18,7 @@ exports.handleIncomingMessage = function(received_message) {
 	} else {
 		// If not, transfer handling to human
 		// TODO : add human handeling
-		console.log('Move message handling to human');
+		console.log('Move message handling to a human');
 	}
 };
 

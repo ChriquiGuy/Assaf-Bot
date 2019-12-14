@@ -1,5 +1,6 @@
 const request = require('request');
 const wait = require('wait-for-stuff');
+const incomingMessageUtils = require('../MessageUtils/incoming_message_ultis');
 
 exports.markTyping = function(senderPSID, message) {
 	runAction(senderPSID, 'typing_on');
@@ -9,7 +10,8 @@ exports.markTyping = function(senderPSID, message) {
 
 exports.markSeen = function(senderPSID, incomingMeassage) {
 	runAction(senderPSID, 'mark_seen');
-	wait.for.time(calculateWaitTime(incomingMeassage));
+	const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
+	wait.for.time(calculateWaitTime(incomingMeassageString));
 };
 
 function calculateWaitTime(message) {

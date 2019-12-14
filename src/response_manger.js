@@ -7,27 +7,25 @@ const patternMatching = require('../Services/Domain/pattern_matching');
 // Check to which pattern incoming message belong to
 // Then return the appropriate response to the message
 exports.processMessage = function(senderPSID, message) {
+	logMessageText(senderPSID, messageText);
 	const messageText = incomingMessageUtils.getTextFromMessage(message);
-	console.log(`Incoming message from PSID: ${senderPSID}.\nMessage: ${messageText}.`);
 
 	const requestObject = {
 		psid: senderPSID,
 		message: message
 	};
-
 	// Find to which pattern the incoming message belong to
 	const pattern = patternMatching.matchPattern(messageText);
 	// Get the response to an message from specific pattern
 	const response = pattern.getResponse(messageText);
 
-	logMessageText(senderPSID, messageText, response);
 	return response;
 };
 
-// Log to console the message and the response to it
-function logMessageText(senderPSID, message, response) {
+// Log to console the incoming message
+function logMessageText(senderPSID, message) {
 	const messageText = incomingMessageUtils.getTextFromMessage(message);
-	console.log(`Incoming message from PSID: ${senderPSID}.\nMessage: ${messageText}.\nResponse: ${response}`);
+	console.log(`Incoming message from PSID: ${senderPSID}.\nMessage: ${messageText}.`);
 	// const diagnosis = nlpDiagnosis.analyzeNlp(message);
 	// const message_diagnosis = JSON.stringify(diagnosis, null, 4);
 	// console.log('Message diagnosis:' + message_diagnosis);
