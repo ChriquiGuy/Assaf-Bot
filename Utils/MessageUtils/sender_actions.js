@@ -23,7 +23,7 @@ exports.markSeen = function(senderPSID, incomingMeassage) {
 function calculateWaitTime(message) {
 	// console.log('Delay time =  ' + message.length / 10);
 	// return message.length / 10;
-	return 5;
+	return 10;
 }
 
 function runAction(senderPSID, action) {
