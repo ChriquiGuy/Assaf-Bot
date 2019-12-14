@@ -21,9 +21,9 @@ exports.markSeen = function(senderPSID, incomingMeassage) {
 };
 
 function calculateWaitTime(message) {
-	// console.log('Delay time =  ' + message.length / 10);
-	// return message.length / 10;
-	return 10;
+	const delay = message.length / 10;
+	if (delay > 7) delay = 7;
+	return delay;
 }
 
 function runAction(senderPSID, action) {
