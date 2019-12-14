@@ -8,15 +8,16 @@ const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_A
 exports.markTyping = function(senderPSID, message) {
 	messageClient.toggleTyping(senderPSID, true);
 	// runAction(senderPSID, 'typing_on');
-	// wait.for.time(calculateWaitTime(message));
+	wait.for.time(calculateWaitTime(message));
 	// runAction(senderPSID, 'typing_off');
+	messageClient.toggleTyping(senderPSID, false);
 };
 
 exports.markSeen = function(senderPSID, incomingMeassage) {
 	messageClient.markSeen(senderPSID);
 	// runAction(senderPSID, 'mark_seen');
-	// const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
-	// wait.for.time(calculateWaitTime(incomingMeassageString));
+	const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
+	wait.for.time(calculateWaitTime(incomingMeassageString));
 };
 
 function calculateWaitTime(message) {
