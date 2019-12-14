@@ -1,18 +1,33 @@
 'use strict';
 
 const request = require('request');
-const flowManager = require('./flow_manger');
+const responseManager = require('./flow_manger');
+const messengerAction = require('../Utils/MessageUtils/sender_actions');
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(received_message) {
 	const senderPSID = getSenderPsidFromMessage(received_message);
-	flowManager.processMessage(senderPSID, received_message);
+
+	// Get response to the incoming message
+	let response = responseManager.processMessage(senderPSID, received_message);
+
+	if (response) {
+		// Mark message as seen and wait 'x' amount of time before response back (reading time)
+		messengerAction.markSeen(sender_psid, received_message);
+		// If appropriate response found, send it to the client
+		sendMessage(senderPSID, response);
+	} else {
+		// If not, transfer handling to human
+		// TODO : add human handeling
+		console.log('Move message handling to human');
+	}
 };
 
 // Sends response messages via the Send API (send the message {messageText} to user {sender_psid}
 // if the callback function parameter exists, it runs it after the request is sent
-exports.sendMessage = function callSendAPI(sender_psid, response, callback) {
+const sendMessage = function callSendAPI(sender_psid, response, callback) {
 	const request_body = createRequestBody(sender_psid, response);
+	messengerAction.markTyping(sender_psid, response);
 
 	// Send the HTTP request to the Messenger Platform`
 	request(
@@ -32,16 +47,17 @@ exports.sendMessage = function callSendAPI(sender_psid, response, callback) {
 			}
 		}
 	);
-
 	if (callback) {
 		callback();
 	}
 };
 
+// Return sender PSID
 function getSenderPsidFromMessage(message) {
 	return message.sender.id;
 }
 
+// Return request body object
 function createRequestBody(sender_psid, response) {
 	return {
 		recipient: {

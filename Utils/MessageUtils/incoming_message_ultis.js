@@ -2,6 +2,7 @@
 
 const UNDERSCORE_SEPARATOR = '_';
 
+// Return text string of incoming message
 exports.getTextFromMessage = function(received_message) {
 	if (received_message.message) {
 		if (received_message.message.quick_reply) {

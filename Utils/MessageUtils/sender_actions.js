@@ -1,15 +1,22 @@
 const request = require('request');
 const wait = require('wait-for-stuff');
 
-exports.markTyping = function(senderPSID) {
+exports.markTyping = function(senderPSID, message) {
 	runAction(senderPSID, 'typing_on');
-	wait.for.time(2);
+	wait.for.time(calculateWaitTime(message));
 	runAction(senderPSID, 'typing_off');
 };
 
-exports.markSeen = (senderPSID) => runAction(senderPSID, 'mark_seen');
+exports.markSeen = function(senderPSID, incomingMeassage) {
+	runAction(senderPSID, 'mark_seen');
+	wait.for.time(calculateWaitTime(incomingMeassage));
+};
 
-runAction = function(senderPSID, action) {
+function calculateWaitTime(message) {
+	return message.length / 3;
+}
+
+function runAction(senderPSID, action) {
 	var headers = {
 		'Content-Type': 'application/json'
 	};
@@ -34,4 +41,4 @@ runAction = function(senderPSID, action) {
 		}
 	}
 	request(options, callback);
-};
+}
