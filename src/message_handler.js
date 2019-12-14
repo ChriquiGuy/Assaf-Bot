@@ -7,12 +7,12 @@ const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_A
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(received_message) {
-	const senderID = getSenderPsidFromMessage(received_message);
+	const senderID = received_message.sender.id;
 
 	// Get response to the incoming message
 	let response = responseManager.processMessage(senderID, received_message);
 	if (response) {
-		console.log('Response : ' + response.text);
+		console.log('Response : ' + response);
 		// Mark message as seen and wait 'x' amount of time before response back (reading time)
 		messengerAction.markSeen(senderID, received_message);
 		// If appropriate response found, send it to the client
@@ -27,22 +27,7 @@ exports.handleIncomingMessage = function(received_message) {
 // Sends response messages via the Send API (send the message {messageText} to user {sender_psid}
 const sendMessage = function(sender_psid, response) {
 	// Mark typing and wait 'x' amount of time before disable typing (writing time)
-	messengerAction.markTyping(sender_psid, response.text);
+	messengerAction.markTyping(sender_psid, response);
 	// Send the HTTP request to the Messenger Platform`
-	messageClient.sendTextMessage(sender_psid, response.text).then((result) => {});
+	messageClient.sendTextMessage(sender_psid, response).then((result) => {});
 };
-
-// Return sender PSID
-function getSenderPsidFromMessage(message) {
-	return message.sender.id;
-}
-
-// Return request body object
-function createRequestBody(sender_psid, response) {
-	return {
-		recipient: {
-			id: sender_psid
-		},
-		message: response
-	};
-}

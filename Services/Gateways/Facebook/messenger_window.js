@@ -1,55 +1,47 @@
 'use strict';
 
-const request = require('request'),
-	constants = require('../../../constants');
-
-/*
-instructions:
-https://developers.facebook.com/docs/messenger-platform/introduction/conversation-components/#welcome_screen
- */
+const constants = require('../../../constants');
+import { Profile } from 'fb-messenger-bot-api';
+const profileClient = new FacebookProfileAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 exports.initMessengerWindow = function() {
-	const headers = {
-		'Content-Type': 'application/json'
-	};
+	// Setting Greeting Message
+	profileClient.setGreetingMessage('לחץ על הכפתור בכדי להתחיל').then((result) => {});
 
-	const dataString = JSON.stringify({
-		get_started: { payload: constants.payloads.PAYLOAD_GET_STARTED },
-		greeting: [
-			{
-				locale: 'default',
-				text: 'לחצו על הכפתור בכדי להתחיל'
-			}
-		],
-		persistent_menu: [
+	// Setting Get Started button
+	profileClient.setGetStartedAction(senderId, 'GET_STARTED').then((result) => {});
+
+	// Setting Persistent Menu
+	profileClient.setPersistentMenu(senderId, [ getPersistentMenuObject() ]).then((result) => {});
+};
+
+// Return persistent_menu object
+function getPersistentMenuObject() {
+	return;
+	{
+		'persistent_menu'[
 			{
 				locale: 'default',
 				composer_input_disabled: false,
 				call_to_actions: [
 					{
-						title: 'חזור להתחלה',
 						type: 'postback',
-						payload: constants.payloads.PAYLOAD_RESTART
+						title: 'Talk to an agent',
+						payload: 'CARE_HELP'
+					},
+					{
+						type: 'postback',
+						title: 'Outfit suggestions',
+						payload: 'CURATION'
+					},
+					{
+						type: 'web_url',
+						title: 'Shop now',
+						url: 'https://www.originalcoastclothing.com/',
+						webview_height_ratio: 'full'
 					}
 				]
 			}
-		]
-	});
-
-	const options = {
-		url: `https://graph.facebook.com/v2.6/me/messenger_profile?access_token=${process.env.PAGE_ACCESS_TOKEN}`,
-		method: 'POST',
-		headers: headers,
-		body: dataString
-	};
-
-	function callback(error, response, body) {
-		if (!error && response.statusCode == 200) {
-			// console.log("Setting: Menu, 'Get Started' button, and Welcome Messages was completed successfully.");
-		} else if (error) {
-			console.error(`Failed to init :\n${JSON.stringify(error, null, 4)}`);
-		}
+		];
 	}
-
-	request(options, callback);
-};
+}
