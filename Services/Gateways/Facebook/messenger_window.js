@@ -1,8 +1,7 @@
 'use strict';
 
 const constants = require('../../../constants');
-import { Profile } from 'fb-messenger-bot-api';
-const profileClient = new FacebookProfileAPIClient(process.env.PAGE_ACCESS_TOKEN);
+const profileClient = new facebook.FacebookProfileAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 exports.initMessengerWindow = function() {
 	// Setting Greeting Message
