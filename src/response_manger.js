@@ -16,11 +16,11 @@ exports.processMessage = function(senderPSID, message) {
 	};
 
 	// Find to which pattern the incoming message belong to
-	const pattern = patternMatching.matchPattern(message);
+	const pattern = patternMatching.matchPattern(messageText);
 	// Get the response to an message from specific pattern
-	const response = pattern.getResponse(message);
+	const response = pattern.getResponse(messageText);
 
-	logMessageText(senderPSID, message, response);
+	logMessageText(senderPSID, messageText, response);
 	return response;
 };
 
