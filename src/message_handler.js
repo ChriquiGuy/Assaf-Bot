@@ -26,9 +26,7 @@ exports.handleIncomingMessage = function(received_message) {
 // Sends response messages via the Send API (send the message {messageText} to user {sender_psid}
 // if the callback function parameter exists, it runs it after the request is sent
 const sendMessage = function callSendAPI(sender_psid, response, callback) {
-	const request_body = createRequestBody(sender_psid, response);
-	console.log('Return: ' + response.text);
-
+	const request_body = createRequestBody(sender_psid, response.text);
 	// messengerAction.markTyping(sender_psid, response.text);
 
 	// Send the HTTP request to the Messenger Platform`
