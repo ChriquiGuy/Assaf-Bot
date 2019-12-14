@@ -3,15 +3,17 @@ const wait = require('wait-for-stuff');
 const incomingMessageUtils = require('../MessageUtils/incoming_message_ultis');
 const facebook = require('fb-messenger-bot-api');
 
+const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
+
 exports.markTyping = function(senderPSID, message) {
-	facebook.messageClient.toggleTyping(senderId, true);
+	messageClient.toggleTyping(senderId, true);
 	// runAction(senderPSID, 'typing_on');
 	// wait.for.time(calculateWaitTime(message));
 	// runAction(senderPSID, 'typing_off');
 };
 
 exports.markSeen = function(senderPSID, incomingMeassage) {
-	facebook.messageClient.markSeen(senderPSID);
+	messageClient.markSeen(senderPSID);
 	// runAction(senderPSID, 'mark_seen');
 	// const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
 	// wait.for.time(calculateWaitTime(incomingMeassageString));
