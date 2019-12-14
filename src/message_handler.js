@@ -11,6 +11,7 @@ exports.handleIncomingMessage = function(received_message) {
 	// Get response to the incoming message
 	let response = responseManager.processMessage(senderPSID, received_message);
 	if (response) {
+		console.log('Response : ' + response.text);
 		// Mark message as seen and wait 'x' amount of time before response back (reading time)
 		messengerAction.markSeen(senderPSID, received_message);
 		// If appropriate response found, send it to the client
@@ -26,6 +27,8 @@ exports.handleIncomingMessage = function(received_message) {
 // if the callback function parameter exists, it runs it after the request is sent
 const sendMessage = function callSendAPI(sender_psid, response, callback) {
 	const request_body = createRequestBody(sender_psid, response);
+	console.log('Return: ' + response.text);
+
 	messengerAction.markTyping(sender_psid, response.text);
 
 	// Send the HTTP request to the Messenger Platform`
