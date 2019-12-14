@@ -13,7 +13,7 @@ exports.handleIncomingMessage = function(received_message) {
 
 	if (response) {
 		// Mark message as seen and wait 'x' amount of time before response back (reading time)
-		messengerAction.markSeen(sender_psid, received_message);
+		messengerAction.markSeen(senderPSID, received_message);
 		// If appropriate response found, send it to the client
 		sendMessage(senderPSID, response);
 	} else {
