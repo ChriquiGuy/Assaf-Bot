@@ -6,7 +6,7 @@ const facebook = require('fb-messenger-bot-api');
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 exports.markTyping = function(senderPSID, message) {
-	messageClient.toggleTyping(senderId, true);
+	messageClient.toggleTyping(senderPSID, true);
 	// runAction(senderPSID, 'typing_on');
 	// wait.for.time(calculateWaitTime(message));
 	// runAction(senderPSID, 'typing_off');
