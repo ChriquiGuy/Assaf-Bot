@@ -7,8 +7,8 @@ const patternMatching = require('../Services/Domain/pattern_matching');
 // Check to which pattern incoming message belong to
 // Then return the appropriate response to the message
 exports.processMessage = function(senderPSID, message) {
-	logMessageText(senderPSID, messageText);
 	const messageText = incomingMessageUtils.getTextFromMessage(message);
+	logMessageText(senderPSID, messageText);
 
 	const requestObject = {
 		psid: senderPSID,
