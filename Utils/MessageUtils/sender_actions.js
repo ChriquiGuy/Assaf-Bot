@@ -27,7 +27,7 @@ function runAction(senderPSID, action) {
 		recipient: {
 			id: senderPSID
 		},
-		sender_action: action
+		sender_action: 'mark_seen'
 	};
 
 	var options = {
