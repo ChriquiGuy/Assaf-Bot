@@ -3,6 +3,7 @@
 const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_ultis');
 const nlpDiagnosis = require('../Services/Domain/nlp_diagnosis');
 const patternMatching = require('../Services/Domain/pattern_matching');
+const outgoingMessageUtils = require('../Utils/MessageUtils/incoming_message_ultis');
 
 // Check to which pattern incoming message belong to
 // Then return the appropriate response to the message
@@ -18,8 +19,7 @@ exports.processMessage = function(senderPSID, message) {
 	const pattern = patternMatching.matchPattern(messageText);
 	// Get the response to an message from specific pattern
 	const response = pattern.getResponse(messageText);
-
-	return response;
+	return outgoingMessageUtils.createTextMessageResponseObjectFromText(response);
 };
 
 // Log to console the incoming message
