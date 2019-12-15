@@ -13,8 +13,9 @@ exports.matchPattern = function(message) {
   if (payload) return handlePayload(payload);
 
   // Get intent of message
-  const messageIntent = nlpDiagnosis.getNlpEntityByName(message, "intent").value;
+  const messageIntent = nlpDiagnosis.getIntent(message);
   console.log("messageIntent: " + messageIntent);
+  console.log("messageIntent value: " + messageIntent.value);
 
   return undefined;
 };
