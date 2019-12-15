@@ -7,11 +7,6 @@ exports.getNlpResults = function getNlpResults(message) {
   if (message && message.message && message.message.nlp) {
     const requiredNLPResults = message.message.nlp;
     filterUnConfident(requiredNLPResults, CONFIDENCE_LEVEL);
-
-    // Log nlp diagnosis
-    const diagnosisString = JSON.stringify(requiredNLPResults, null, 4);
-    console.log("Message diagnosis:" + diagnosisString);
-
     return requiredNLPResults;
   }
 };
