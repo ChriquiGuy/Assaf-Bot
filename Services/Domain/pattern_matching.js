@@ -22,6 +22,6 @@ exports.matchPattern = function(message) {
 // Handle known payloads
 function handlePayload(payload) {
   console.log("# Incoming message is a payload");
-  if (messageText === "GET_STARTED") return require("../../Patterns/greeting_pattern");
+  if (payload === "GET_STARTED") return require("../../Patterns/greeting_pattern");
   return undefined;
 }
