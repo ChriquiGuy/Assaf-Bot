@@ -11,6 +11,7 @@ exports.handleIncomingMessage = function(received_message) {
 
   // Get response to the incoming message
   let response = responseManager.matchResponse(senderId, received_message);
+
   if (response) {
     // Mark message as seen and wait 'x' amount of time before response back (reading time)
     messengerAction.markSeen(senderId, received_message);
