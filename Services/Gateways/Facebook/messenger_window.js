@@ -10,28 +10,9 @@ exports.initMessengerWindow = function() {
 	// Setting Get Started button
 	profileClient.setGetStartedAction(undefined, 'GET_STARTED').then((result) => {});
 
-	// Setting Persistent Menu
-	profileClient.setPersistentMenu(undefined, [ getPersistentMenuObject() ]).then((result) => {});
+	//! Need to fix :  Setting Persistent Menu
+	// profileClient.setPersistentMenu(undefined, [ getPersistentMenuObject() ]).then((result) => {});
 };
 
 // Return persistent_menu object
-function getPersistentMenuObject() {
-	return [
-		{
-			type: 'postback',
-			title: 'Talk to an agent',
-			payload: 'CARE_HELP'
-		},
-		{
-			type: 'postback',
-			title: 'Outfit suggestions',
-			payload: 'CURATION'
-		},
-		{
-			type: 'web_url',
-			title: 'Shop now',
-			url: 'https://www.originalcoastclothing.com/',
-			webview_height_ratio: 'full'
-		}
-	];
-}
+function getPersistentMenuObject() {}
