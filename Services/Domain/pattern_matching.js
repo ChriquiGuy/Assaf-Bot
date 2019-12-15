@@ -8,13 +8,13 @@ const incomingMessageUtils = require("../../Utils/MessageUtils/incoming_message_
 exports.matchPattern = function(message) {
   // Extract payloda from message object
   const payload = incomingMessageUtils.extractPayloadFromMessage(message);
+
   // If message is a payload
   if (payload) return handlePayload(payload);
 
   // Get intent of message
-  const diagnosis = nlpDiagnosis.getNlpResults(message);
-  const diagnosisString = JSON.stringify(diagnosis, null, 4);
-  console.log("Message diagnosis:" + diagnosisString);
+  const messageIntent = nlpDiagnosis.getNlpEntityByName(message, "intent").value;
+  console.log("messageIntent: " + messageIntent);
 
   return undefined;
 };
