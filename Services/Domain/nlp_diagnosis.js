@@ -3,7 +3,7 @@
 const CONFIDENCE_LEVEL = 0.5;
 
 // Returns the entitis found from nlp model in JSON format
-exports.analyzeNlp = function getNlpResults(message) {
+exports.getNlpResults = function getNlpResults(message) {
   if (message && message.message && message.message.nlp) {
     const requiredNLPResults = message.message.nlp;
     filterUnConfident(requiredNLPResults, CONFIDENCE_LEVEL);
