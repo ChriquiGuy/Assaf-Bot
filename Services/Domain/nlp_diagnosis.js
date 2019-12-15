@@ -24,7 +24,7 @@ function filterUnConfident(nlpEntitiesArray, limit) {
 exports.getEntity = function getNlpEntityByName(message, entity) {
   if (message && message.message && message.message.nlp) {
     const requiredNLPResults = message.message.nlp;
-    return requiredNLPResults.entities[entity];
+    return requiredNLPResults.entities[entity][0];
   }
 };
 
@@ -32,6 +32,6 @@ exports.getEntity = function getNlpEntityByName(message, entity) {
 exports.getIntent = function getIntent(message) {
   if (message && message.message && message.message.nlp) {
     const requiredNLPResults = message.message.nlp;
-    return requiredNLPResults.entities["intent"];
+    return requiredNLPResults.entities["intent"][0];
   }
 };
