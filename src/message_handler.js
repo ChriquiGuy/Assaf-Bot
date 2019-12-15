@@ -3,9 +3,7 @@
 const responseManager = require("./response_manger");
 const messengerAction = require("../Utils/MessageUtils/sender_actions");
 const facebook = require("fb-messenger-bot-api");
-const messageClient = new facebook.FacebookMessagingAPIClient(
-  process.env.PAGE_ACCESS_TOKEN
-);
+const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(received_message) {
@@ -28,9 +26,7 @@ exports.handleIncomingMessage = function(received_message) {
 // Sends response messages via the Send API (send the message {messageText} to user {sender_psid}
 const sendMessage = function(senderId, response) {
   // Log response before sending
-  console.log(
-    `Outgoing message to PSID: ${senderId}.\nResponse Message: ${response}.`
-  );
+  console.log(`Outgoing message to PSID: ${senderId}.\nResponse Message: ${response}.`);
   // Mark typing and wait 'x' amount of time before disable typing (writing time)
   messengerAction.markTyping(senderId, response);
   // Send the HTTP request to the Messenger Platform`

@@ -1,6 +1,5 @@
 "use strict";
 
-const incomingMessageUtils = require("../Utils/MessageUtils/incoming_message_ultis");
 const patternMatching = require("../Services/Domain/pattern_matching");
 
 /*
@@ -8,12 +7,10 @@ const patternMatching = require("../Services/Domain/pattern_matching");
 	Then return the appropriate response to the message
 */
 exports.matchResponse = function(senderId, message) {
-  // Extract string from message object
-  const messageText = incomingMessageUtils.getTextFromMessage(message);
   // Log incoming message
-  console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${messageText}.`);
+  console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${message.message.text}.`);
   // Find to which pattern the incoming message belong to
-  const pattern = patternMatching.matchPattern(messageText);
+  const pattern = patternMatching.matchPattern(message);
   // Didnt find matching pattern
   if (pattern == undefined) return undefined;
   // Get the response to an message from specific pattern
