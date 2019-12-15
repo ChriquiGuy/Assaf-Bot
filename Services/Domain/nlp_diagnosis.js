@@ -22,10 +22,10 @@ function filterUnConfident(nlpEntitiesArray, limit) {
 
 // Return entity data by a given name
 exports.getEntity = function getNlpEntityByName(message, entity) {
-  return message && message.nlp && message.nlp.entities && message.nlp.entities[entity][0];
+  return message && message.nlp && message.nlp.entities && message.nlp.entities[entity];
 };
 
 // Return message intent
 exports.getIntent = function getIntent(message) {
-  return message && message.nlp && message.nlp.entities && message.nlp.entities["intent"][0];
+  return message && message.nlp && message.nlp.entities && message.nlp.entities["intent"];
 };
