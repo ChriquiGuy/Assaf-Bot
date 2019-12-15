@@ -22,10 +22,16 @@ function filterUnConfident(nlpEntitiesArray, limit) {
 
 // Return entity data by a given name
 exports.getEntity = function getNlpEntityByName(message, entity) {
-  return message && message.nlp && message.nlp.entities && message.nlp.entities[entity];
+  if (message && message.message && message.message.nlp) {
+    const requiredNLPResults = message.message.nlp;
+    return requiredNLPResults.entities[entity];
+  }
 };
 
 // Return message intent
 exports.getIntent = function getIntent(message) {
-  return message && message.nlp && message.nlp.entities && message.nlp.entities["intent"];
+  if (message && message.message && message.message.nlp) {
+    const requiredNLPResults = message.message.nlp;
+    return requiredNLPResults.entities["intent"];
+  }
 };
