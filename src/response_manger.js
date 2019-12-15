@@ -8,7 +8,6 @@ const incomingMessageUtils = require("../Utils/MessageUtils/incoming_message_ult
 	Then return the appropriate response to the message
 */
 exports.matchResponse = function(senderId, message) {
-  console.log("Debug");
   // Extract string from message object
   const messageText = incomingMessageUtils.getTextFromMessage(message);
   // Log incoming message
