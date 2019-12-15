@@ -1,7 +1,7 @@
 "use strict";
 
 const patternMatching = require("../Services/Domain/pattern_matching");
-const incomingMessageUtils = require("../MessageUtils/incoming_message_ultis");
+const incomingMessageUtils = require("../Utils/MessageUtils/incoming_message_ultis");
 
 /*
 	Check to which pattern incoming message belong to

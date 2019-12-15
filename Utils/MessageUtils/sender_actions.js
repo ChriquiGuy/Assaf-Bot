@@ -1,5 +1,5 @@
 const wait = require("wait-for-stuff");
-const incomingMessageUtils = require("../MessageUtils/incoming_message_ultis");
+const incomingMessageUtils = require("./incoming_message_ultis");
 const facebook = require("fb-messenger-bot-api");
 
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);

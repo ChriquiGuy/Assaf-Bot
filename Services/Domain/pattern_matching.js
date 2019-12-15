@@ -2,7 +2,7 @@
 
 const constants = require("../../constants");
 const nlpDiagnosis = require("./nlp_diagnosis");
-const incomingMessageUtils = require("../MessageUtils/incoming_message_ultis");
+const incomingMessageUtils = require("../../Utils/MessageUtils/incoming_message_ultis");
 
 // Find best matching pattern to  incoming message
 exports.matchPattern = function(message) {
