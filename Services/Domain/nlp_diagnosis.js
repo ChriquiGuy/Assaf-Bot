@@ -25,6 +25,8 @@ exports.getEntity = function getNlpEntityByName(message, entity) {
 	if (message && message.message && message.message.nlp) {
 		const requiredNLPResults = message.message.nlp;
 		return requiredNLPResults.entities[entity][0];
+	} else {
+		console.log('Entity ' + entity + ' not found');
 	}
 };
 
@@ -33,5 +35,7 @@ exports.getIntent = function getIntent(message) {
 	if (message && message.message && message.message.nlp) {
 		const requiredNLPResults = message.message.nlp;
 		return requiredNLPResults.entities['intent'][0];
+	} else {
+		console.log('No intent found');
 	}
 };
