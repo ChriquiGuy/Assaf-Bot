@@ -5,11 +5,11 @@ const nlpDiagnosis = require('./nlp_diagnosis');
 const incomingMessageUtils = require('../../Utils/MessageUtils/incoming_message_ultis');
 
 // Find best matching pattern to  incoming message
-exports.matchPattern = function(message) {
+exports.matchPattern = function(messageObject) {
 	// If message is a free text
-	if (message.message) return handleFreeText(message);
+	if (messageObject.message) return handleFreeText(messageObject);
 	// If message is a payload
-	if (message.postback) return handlePayload(message);
+	if (messageObject.postback) return handlePayload(messageObject);
 	// Log to consloe none known message type found
 	console.log('[#] Message is from unknown type.');
 	// Unknown message type, return undefined
@@ -17,11 +17,11 @@ exports.matchPattern = function(message) {
 };
 
 // Handle known payloads
-function handlePayload(message) {
+function handlePayload(messageObject) {
 	// Log to console type of message
 	console.log('[#] Message is a payload.');
 	// Extract payload from message object
-	const payload = incomingMessageUtils.getTextFromMessage(message);
+	const payload = incomingMessageUtils.getTextFromMessage(messageObject);
 	// Find matching pattern for current payload
 	if (payload === 'GET_STARTED') return require('../../Patterns/greeting_pattern');
 	// No matching found, return undefined
@@ -29,14 +29,14 @@ function handlePayload(message) {
 }
 
 // Handle free text message
-function handleFreeText(message) {
+function handleFreeText(messageObject) {
 	// Log to console type of message
 	console.log('[#] Message is a free text.');
-	//! // Get intent of message
-	// const messageIntent = nlpDiagnosis.getIntent(message);
-	// console.log('Intent: ' + messageIntent.value);
-	//! // Extract free text from message object
-	// const textMessage = incomingMessageUtils.getTextFromMessage(message);
+	// Get intent of message
+	const messageIntent = nlpDiagnosis.getIntent(messageObject);
+	console.log('Intent: ', messageIntent.value);
+	// Extract free text from message object
+	const textMessage = incomingMessageUtils.getTextFromMessage(messageObject);
 	// Cant understand free text intent
 	return undefined;
 }

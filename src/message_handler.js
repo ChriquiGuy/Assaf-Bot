@@ -8,7 +8,6 @@ const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_ult
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(messageObject) {
-	console.log('messageObject : ', messageObject);
 	// Extract sender id from message object
 	const senderId = messageObject.sender.id;
 	// Extract message string from message object
@@ -17,7 +16,7 @@ exports.handleIncomingMessage = function(messageObject) {
 	console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${messageText}.`);
 
 	// Get response object to the incoming message
-	let response = responseManager.matchResponse(senderId, messageObject);
+	let response = responseManager.matchResponse(messageObject);
 
 	if (response) {
 		// Mark message as seen and wait 'x' amount of time before response back (x=reading time)
