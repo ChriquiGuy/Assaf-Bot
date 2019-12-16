@@ -69,7 +69,8 @@ app.get('/webhook', (req, res) => {
 });
 
 function getEventType(entry) {
-	entry(function(event) {
+	// Iterate over each messaging event
+	entry.messaging.forEach(function(event) {
 		if (event.message) return 'text';
 		else if (event.postback) return 'payload';
 	});
