@@ -6,15 +6,20 @@ const facebook = require('fb-messenger-bot-api');
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 // Handles incoming messages
-exports.handleIncomingMessage = function(received_message) {
-	const senderId = received_message.sender.id;
+exports.handleIncomingMessage = function(messageObject) {
+	// Extract sender id from message object
+	const senderId = messageObject.sender.id;
+	// Extract message string from message object
+	const messageText = incomingMessageUtils.getTextFromMessage(message);
+	// Log to console incoming message
+	console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${messageText}.`);
 
-	// Get response to the incoming message
-	let response = responseManager.matchResponse(senderId, received_message);
+	// Get response object to the incoming message
+	let response = responseManager.matchResponse(senderId, messageObject);
 
 	if (response) {
-		// Mark message as seen and wait 'x' amount of time before response back (reading time)
-		messengerAction.markSeen(senderId, received_message);
+		// Mark message as seen and wait 'x' amount of time before response back (x=reading time)
+		messengerAction.markSeen(senderId, messageObject);
 		// If appropriate response found, send all message in it to the client
 		sendResponseMessages(senderId, response);
 	} else {
@@ -24,13 +29,13 @@ exports.handleIncomingMessage = function(received_message) {
 	}
 };
 
-// Sends response messages via the Send API (send the message {messageText} to user {sender_psid}
+// Sends response messages back to sender
 const sendMessage = function(senderId, response) {
 	// Log response before sending
 	console.log(`Outgoing message to PSID: ${senderId}.\nResponse Message: ${response}.`);
-	// Mark typing and wait 'x' amount of time before disable typing (writing time)
+	// Mark typing and wait 'x' amount of time before disable typing (x=writing time)
 	messengerAction.markTyping(senderId, response);
-	// Send the HTTP request to the Messenger Platform`
+	// Send the HTTP request to the Messenger Platform
 	messageClient.sendTextMessage(senderId, response).then((result) => {
 		`Result sent with: ${result}`;
 	});
@@ -40,7 +45,7 @@ const sendMessage = function(senderId, response) {
 async function sendResponseMessages(senderId, response) {
 	// Runs on message responses array and send them one by one
 	for (const message of response.messages) {
-		// Send message to the client
+		// Send message to the sender
 		sendMessage(senderId, message);
 	}
 }

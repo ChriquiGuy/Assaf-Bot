@@ -8,10 +8,6 @@ const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_ult
 	Then return the appropriate response to the message
 */
 exports.matchResponse = function(senderId, message) {
-	// Extract string from message object
-	const messageText = incomingMessageUtils.getTextFromMessage(message);
-	// Log incoming message
-	console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${messageText}.`);
 	// Find to which pattern the incoming message belong to
 	const pattern = patternMatching.matchPattern(message);
 	// Didnt find matching pattern
