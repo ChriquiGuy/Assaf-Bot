@@ -24,9 +24,15 @@ exports.extractPayloadFromMessage = function(message) {
 };
 
 exports.checkIfPayload = function checkIfPayload(message) {
-	return message && message.postback && message.postback.payload;
+	if (message && message.message) {
+		if (message.message.quick_reply) return false;
+		else return false;
+	} else if (message.postback) return true;
 };
 
 exports.checkIfFreeText = function checkIfFreeText(message) {
-	return message && message.message && message.message.text;
+	if (message && message.message) {
+		if (message.message.quick_reply) return false;
+		else return true;
+	} else if (message.postback) return false;
 };
