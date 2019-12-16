@@ -8,6 +8,7 @@ const incomingMessageUtils = require('../../Utils/MessageUtils/incoming_message_
 exports.matchPattern = function(message) {
 	// Extract payloda from message object
 	const payload = incomingMessageUtils.extractPayloadFromMessage(message);
+	console.log('This is the message : ' + message);
 
 	// If message is a payload
 	if (payload) return handlePayload(payload);
