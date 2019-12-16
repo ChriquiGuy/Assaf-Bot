@@ -15,15 +15,3 @@ exports.getTextFromMessage = function(received_message) {
 		return received_message.postback.payload;
 	}
 };
-
-// Return 'true' if incoming message is payload
-exports.checkIfPayload = function checkIfPayload(message) {
-	if (message && message.postback && message.postback.payload) return true;
-	return false;
-};
-
-// Return 'true' if incoming message is free text
-exports.checkIfFreeText = function checkIfFreeText(message) {
-	if (message && message.message && !message.message.quick_reply && !message.postback) return true;
-	return false;
-};

@@ -7,9 +7,9 @@ const incomingMessageUtils = require('../../Utils/MessageUtils/incoming_message_
 // Find best matching pattern to  incoming message
 exports.matchPattern = function(message) {
 	// If message is a free text
-	if (incomingMessageUtils.checkIfFreeText) return handleFreeText(message);
+	if (message.type == 'text') return handleFreeText(message);
 	// If message is a payload
-	if (incomingMessageUtils.checkIfPayload) return handlePayload(message);
+	if (message.type == 'payload') return handlePayload(message);
 	// Log to consloe none known message type found
 	console.log('[#] Message is from unknown type.');
 	// Unknown message type, return undefined
