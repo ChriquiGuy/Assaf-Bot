@@ -38,7 +38,7 @@ const sendMessage = function(senderId, response) {
 
 // Handle response messages array
 function sendResponseMessages(senderId, response) {
-	for (message of response.messages) {
+	for (const message of response.messages) {
 		sendMessage(senderId, message);
 	}
 }
