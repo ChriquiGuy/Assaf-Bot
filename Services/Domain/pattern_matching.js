@@ -6,11 +6,11 @@ const incomingMessageUtils = require('../../Utils/MessageUtils/incoming_message_
 
 // Find best matching pattern to  incoming message
 exports.matchPattern = function(message) {
-	// If message is a payload
-	if (incomingMessageUtils.checkIfPayload) return handlePayload(message);
 	// If message is a free text
 	if (incomingMessageUtils.checkIfFreeText) return handleFreeText(message);
-	// Log to consloe none type found
+	// If message is a payload
+	if (incomingMessageUtils.checkIfPayload) return handlePayload(message);
+	// Log to consloe none known message type found
 	console.log('[#] Message is from unknown type.');
 	// Unknown message type, return undefined
 	return undefined;
@@ -32,10 +32,10 @@ function handlePayload(message) {
 function handleFreeText(message) {
 	// Log to console type of message
 	console.log('[#] Message is a free text.');
-	// Get intent of message
-	const messageIntent = nlpDiagnosis.getIntent(message);
+	//! // Get intent of message
+	// const messageIntent = nlpDiagnosis.getIntent(message);
 	// console.log('Intent: ' + messageIntent.value);
-	// // Extract free text from message object
+	//! // Extract free text from message object
 	// const textMessage = incomingMessageUtils.getTextFromMessage(message);
 	// Cant understand free text intent
 	return undefined;
