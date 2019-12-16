@@ -8,6 +8,7 @@ const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_ult
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(messageObject) {
+	console.log('messageObject : ', messageObject);
 	// Extract sender id from message object
 	const senderId = messageObject.sender.id;
 	// Extract message string from message object
