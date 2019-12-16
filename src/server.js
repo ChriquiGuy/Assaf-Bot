@@ -29,7 +29,7 @@ app.post('/webhook', (req, res) => {
 			// will only ever contain one message, so we get index 0
 			let webhook_event = entry.messaging[0];
 			// Get the event type and add it to event object
-			webhook_event.type = getEventType(webhook_event);
+			webhook_event.type = getEventType(entry);
 			console.log('webhook_event type : ' + webhook_event.type);
 			// Pass the event to the handler function
 			console.log('INCOMING_EVENT');
@@ -68,8 +68,8 @@ app.get('/webhook', (req, res) => {
 	}
 });
 
-function getEventType(webhook_event) {
-	webhook_event(function(event) {
+function getEventType(entry) {
+	entry(function(event) {
 		if (event.message) return 'text';
 		else if (event.postback) return 'payload';
 	});
