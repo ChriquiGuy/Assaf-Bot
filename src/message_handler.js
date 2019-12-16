@@ -15,8 +15,8 @@ exports.handleIncomingMessage = function(received_message) {
 	if (response) {
 		// Mark message as seen and wait 'x' amount of time before response back (reading time)
 		messengerAction.markSeen(senderId, received_message);
-		// If appropriate response found, send it to the client
-		sendMessage(senderId, response);
+		// If appropriate response found, send all message in it to the client
+		sendResponseMessages(senderId, response);
 	} else {
 		// If not, transfer handling to human
 		// TODO : add human handeling
@@ -31,5 +31,14 @@ const sendMessage = function(senderId, response) {
 	// Mark typing and wait 'x' amount of time before disable typing (writing time)
 	messengerAction.markTyping(senderId, response);
 	// Send the HTTP request to the Messenger Platform`
-	messageClient.sendTextMessage(senderId, response).then((result) => {});
+	messageClient.sendTextMessage(senderId, response).then((result) => {
+		console.log('sendTextMessage result:' + result);
+	});
 };
+
+// Handle response messages array
+function sendResponseMessages(senderId, response) {
+	for (message of response.messages) {
+		sendMessage(senderId, message);
+	}
+}
