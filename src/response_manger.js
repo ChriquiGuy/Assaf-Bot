@@ -12,6 +12,6 @@ exports.matchResponse = function(senderId, message) {
 	// Didnt find matching pattern
 	if (pattern == undefined) return undefined;
 	// Get the response to an message from specific pattern
-	const response = pattern.getResponse(messageText);
+	const response = pattern.getResponse(message);
 	return response;
 };
