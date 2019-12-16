@@ -32,6 +32,7 @@ function handlePayload(messageObject) {
 function handleFreeText(messageObject) {
 	// Log to console type of message
 	console.log('[#] Message is a free text.');
+	console.log('nlp: ', messageObject.message.nlp);
 	// Get intent of message
 	const messageIntent = nlpDiagnosis.getIntent(messageObject);
 	console.log('Intent: ', messageIntent.value);
