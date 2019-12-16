@@ -37,7 +37,7 @@ const sendMessage = function(senderId, response) {
 };
 
 // Handle response messages array
-function sendResponseMessages(senderId, response) {
+async function sendResponseMessages(senderId, response) {
 	for (const message of response.messages) {
 		sendMessage(senderId, message);
 	}
