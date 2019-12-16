@@ -32,13 +32,15 @@ const sendMessage = function(senderId, response) {
 	messengerAction.markTyping(senderId, response);
 	// Send the HTTP request to the Messenger Platform`
 	messageClient.sendTextMessage(senderId, response).then((result) => {
-		console.log('sendTextMessage result:' + result);
+		`Result sent with: ${result}`;
 	});
 };
 
 // Handle response messages array
 async function sendResponseMessages(senderId, response) {
+	// Runs on message responses array and send them one by one
 	for (const message of response.messages) {
+		// Send message to the client
 		sendMessage(senderId, message);
 	}
 }
