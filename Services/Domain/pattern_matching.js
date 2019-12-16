@@ -7,11 +7,12 @@ const incomingMessageUtils = require('../../Utils/MessageUtils/incoming_message_
 // Find best matching pattern to  incoming message
 exports.matchPattern = function(message) {
 	// Extract payloda from message object
-	const payload = incomingMessageUtils.extractPayloadFromMessage(message);
-	console.log('This is the message : ' + message);
+	const textMessage = incomingMessageUtils.getTextFromMessage(message);
+	console.log('This is the message : ' + textMessage);
 
 	// If message is a payload
-	if (payload) return handlePayload(payload);
+	if (message.message.quick_reply.payload || (message.postback && message.postback.payload))
+		return handlePayload(textMessage);
 
 	// Get intent of message
 	const messageIntent = nlpDiagnosis.getIntent(message);
