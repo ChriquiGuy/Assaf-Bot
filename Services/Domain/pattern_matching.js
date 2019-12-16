@@ -34,9 +34,9 @@ function handleFreeText(message) {
 	console.log('[#] Message is a free text.');
 	// Get intent of message
 	const messageIntent = nlpDiagnosis.getIntent(message);
-	console.log('Intent: ' + messageIntent.value);
-	// Extract free text from message object
-	const textMessage = incomingMessageUtils.getTextFromMessage(message);
+	// console.log('Intent: ' + messageIntent.value);
+	// // Extract free text from message object
+	// const textMessage = incomingMessageUtils.getTextFromMessage(message);
 	// Cant understand free text intent
 	return undefined;
 }
