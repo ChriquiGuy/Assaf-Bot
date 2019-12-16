@@ -11,7 +11,7 @@ exports.handleIncomingMessage = function(messageObject) {
 	// Extract sender id from message object
 	const senderId = messageObject.sender.id;
 	// Extract message string from message object
-	const messageText = incomingMessageUtils.getTextFromMessage(message);
+	const messageText = incomingMessageUtils.getTextFromMessage(messageObject);
 	// Log to console incoming message
 	console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${messageText}.`);
 
