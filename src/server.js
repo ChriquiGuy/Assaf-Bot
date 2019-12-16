@@ -74,6 +74,8 @@ function getEventType(entry) {
 		if (event.message) return 'text';
 		else if (event.postback) return 'payload';
 	});
+
+	return 'Test';
 }
 
 messengerWindow.initMessengerWindow();
