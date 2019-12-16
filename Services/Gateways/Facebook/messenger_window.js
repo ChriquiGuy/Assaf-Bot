@@ -11,7 +11,7 @@ exports.initMessengerWindow = function() {
 	profileClient.setGetStartedAction(undefined, 'GET_STARTED').then((result) => {});
 
 	//! Need to fix :  Setting Persistent Menu
-	profileClient.setPersistentMenu(undefined, getPersistentMenuObject()).then((result) => {});
+	profileClient.setPersistentMenu(undefined, [ getPersistentMenuObject() ]).then((result) => {});
 };
 
 // Return persistent_menu object
