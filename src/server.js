@@ -29,7 +29,9 @@ app.post('/webhook', (req, res) => {
 			// will only ever contain one message, so we get index 0
 			let webhook_event = entry.messaging[0];
 			// Pass the event to the handler function
+			console.log('INCOMING_EVENT');
 			messageHandler.handleIncomingMessage(webhook_event);
+			console.log('EVENT_FINISHED');
 		});
 		// Returns a '200 OK' response to all requests
 		res.status(200).send('EVENT_RECEIVED');
