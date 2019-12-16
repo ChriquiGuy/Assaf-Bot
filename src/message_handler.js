@@ -37,7 +37,7 @@ const sendMessage = function(senderId, response) {
 };
 
 // Handle response messages array
-async function sendResponseMessages(senderId, response) {
+function sendResponseMessages(senderId, response) {
 	// Runs on message responses array and send them one by one
 	for (const message of response.messages) {
 		// Send message to the client
