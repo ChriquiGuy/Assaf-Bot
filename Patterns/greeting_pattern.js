@@ -15,6 +15,3 @@ exports.getResponse = function() {
 
 	return response;
 };
-
-//   // Extract string from message object
-//   const messageText = incomingMessageUtils.getTextFromMessage(message);
