@@ -4,6 +4,7 @@ const responseManager = require('./response_manger');
 const messengerAction = require('../Utils/MessageUtils/sender_actions');
 const facebook = require('fb-messenger-bot-api');
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
+const incomingMessageUtils = require('../Utils/MessageUtils/incoming_message_ultis');
 
 // Handles incoming messages
 exports.handleIncomingMessage = function(messageObject) {
