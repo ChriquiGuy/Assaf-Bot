@@ -8,7 +8,7 @@ exports.getResponse = function(messageObject) {
   //   console.log("pick_up : ", nlpDiagnosis.getEntity(messageObject, "pick_up"));
   //   console.log("location : ", nlpDiagnosis.getEntity(messageObject, "location"));
 
-  const response = "אני על זה!";
+  const messageStart = "אני על זה!";
 
   var description;
 
@@ -18,7 +18,7 @@ exports.getResponse = function(messageObject) {
   const responseActions = undefined;
 
   const response = {
-    messages: [response, description],
+    messages: [messageStart, description],
     actions: [responseActions]
   };
 
