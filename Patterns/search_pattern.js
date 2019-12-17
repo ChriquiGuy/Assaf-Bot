@@ -9,21 +9,21 @@ exports.getResponse = function(messageObject) {
     console.log('pick_up : ' , nlpDiagnosis.getEntity(messageObject, "pick_up"))
     console.log('location : ' , nlpDiagnosis.getEntity(messageObject, "location"))
 
-  const response = "אני על זה!";
+    const response = "אני על זה!";
 
-  const description
+    const description
 
-  const object = nlpDiagnosis.getEntity(messageObject, "object").value;
-  if (object) description += `מחפש לך ${object} `
+    const object = nlpDiagnosis.getEntity(messageObject, "object").value;
+    if (object) description += `מחפש לך ${object} `
 
-  const object = nlpDiagnosis.getEntity(messageObject, "object");
+     const object = nlpDiagnosis.getEntity(messageObject, "object");
 
-  const responseActions = undefined;
+    const responseActions = undefined;
 
-  const response = {
-    messages: [response , description],
-    actions: [responseActions]
-  };
+    const response = {
+      messages: [response , description],
+      actions: [responseActions]
+    };
 
-  return response;
+     return response;
 };
