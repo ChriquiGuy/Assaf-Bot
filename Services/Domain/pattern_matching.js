@@ -10,7 +10,7 @@ exports.matchPattern = function(messageObject) {
 	if (messageObject.message) return handleFreeText(messageObject);
 	// If message is a payload
 	if (messageObject.postback) return handlePayload(messageObject);
-	// Log to consloe none known message type found
+	// Log to consloe unknown message type found
 	console.log('[#] Message is from unknown type.');
 	// Unknown message type, return undefined
 	return undefined;
@@ -34,8 +34,7 @@ function handleFreeText(messageObject) {
 	console.log('[#] Message is a free text.');
 	console.log('nlp: ', messageObject.message.nlp);
 	// Get intent of message
-	const messageIntent = nlpDiagnosis.getIntent(messageObject);
-	console.log('Intent: ', messageIntent.value);
+	const messageIntent = nlpDiagnosis.getIntent(messageObject).value;
 	// Extract free text from message object
 	const textMessage = incomingMessageUtils.getTextFromMessage(messageObject);
 	// Cant understand free text intent
