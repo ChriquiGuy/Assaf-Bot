@@ -4,7 +4,7 @@ const nlpDiagnosis = require("../Services/Domain/nlp_diagnosis");
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
   // Random start message
-  startersMessages = ["אני על זה!", "מתחיל בחיפושים!", "אחלה בחירה! מתחיל בחיפושים"];
+  const startersMessages = ["אני על זה!", "מתחיל בחיפושים!", "אחלה בחירה! מתחיל בחיפושים"];
   var messageStart = startersMessages[Math.floor(Math.random() * startersMessages.length)];
 
   // Init descriptions
