@@ -6,7 +6,7 @@ const SPACE = ' ';
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
 	// Random start message
-	const startersMessages = [ 'אני על זה!', 'מתחיל בחיפושים!', 'אחלה בחירה! מתחיל בחיפושים' ];
+	const startersMessages = [ 'אני על זה!', 'מתחיל בחיפושים!', 'אחלה בחירה! מתחיל בחיפושים', 'רות עבור' ];
 	var messageStart = startersMessages[Math.floor(Math.random() * startersMessages.length)];
 
 	// Init descriptions
@@ -28,16 +28,16 @@ exports.getResponse = function(messageObject) {
 	const amount_of_money = nlpDiagnosis.getEntity(messageObject, 'amount_of_money');
 	if (amount_of_money && amount_of_money.to && amount_of_money.from) {
 		description +=
-			SPACE + 'בטווח של' + SPACE + amount_of_money.from.value + '-' + amount_of_money.to.value + ' שקלים.';
+			SPACE + 'בטווח של' + SPACE + amount_of_money.from.value + '-' + amount_of_money.to.value + ' שקלים';
 	} else if (amount_of_money && amount_of_money.to) {
-		description += SPACE + 'במחיר של עד' + SPACE + amount_of_money.to.value + SPACE + 'שקלים.';
+		description += SPACE + 'עד' + SPACE + amount_of_money.to.value + SPACE + 'שקלים';
 	}
 
 	// Print pick up\deleviry
 	const pick_up = nlpDiagnosis.getEntity(messageObject, 'pick_up');
 	const delivery = nlpDiagnosis.getEntity(messageObject, 'delivery');
 	if (pick_up) description += SPACE + 'לאיסוף עצמי';
-	else if (delivery) description += SPACE + 'למשלוח עד הבית';
+	else if (delivery) description += SPACE + 'עם משלוח עד הבית';
 
 	// Print location
 	const location = nlpDiagnosis.getEntity(messageObject, 'location');

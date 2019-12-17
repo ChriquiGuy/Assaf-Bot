@@ -24,7 +24,6 @@ function calculateWaitTime(message) {
 	const wordCount = message.split(' ').length;
 	// Delay is 0.5 sec for word
 	var delay = wordCount * 0.5;
-	console.log('Delay : ' + delay);
 	if (delay > 10) delay = 10;
 	return delay;
 }

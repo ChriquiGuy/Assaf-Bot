@@ -1,6 +1,6 @@
 'use strict';
 
-const CONFIDENCE_LEVEL = 0.5;
+const CONFIDENCE_LEVEL = 0.3;
 
 // Returns the entitis found from nlp model in JSON format
 exports.getNlpResults = function getNlpResults(messageObject) {
