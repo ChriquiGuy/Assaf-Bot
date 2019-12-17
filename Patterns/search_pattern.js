@@ -37,11 +37,11 @@ exports.getResponse = function(messageObject) {
 	const pick_up = nlpDiagnosis.getEntity(messageObject, 'pick_up');
 	const delivery = nlpDiagnosis.getEntity(messageObject, 'delivery');
 	if (pick_up) description += SPACE + 'לאיסוף עצמי';
-	else if (delivery) description += SPACE + 'עם משלוח עד הבית';
+	else if (delivery) description += SPACE + 'כולל משלוח עד הבית';
 
 	// Print location
 	const location = nlpDiagnosis.getEntity(messageObject, 'location');
-	if ((pick_up || delivery) && location) description += SPACE + 'באיזור' + SPACE + location.value;
+	if (location) description += SPACE + 'באיזור' + SPACE + location.value;
 
 	// Add dot
 	description += '.';
@@ -54,42 +54,3 @@ exports.getResponse = function(messageObject) {
 
 	return response;
 };
-
-//  object :  {
-//    suggested: true,
-//    confidence: 0.75749272937134,
-//    value: 'אופני סינגל ספיד',
-//    type: 'value',
-//    _entity: 'object',
-//    _body: 'אופני סינגל ספיד',
-//    _start: 5,
-//    _end: 21
-//  }
-//  amount_of_money :  {
-//    confidence: 1,
-//    to: { value: 2000, unit: 'ILS' },
-//    type: 'interval',
-//    _entity: 'amount_of_money',
-//    _body: 'עד 2000 שח',
-//    _start: 22,
-//    _end: 32
-//  }
-//  pick_up :  {
-//    confidence: 0.99235668753514,
-//    value: 'איסוף עצמי',
-//    type: 'value',
-//    _entity: 'pick_up',
-//    _body: 'איסוף עצמי',
-//    _start: 34,
-//    _end: 44
-//  }
-//  location :  {
-//    suggested: true,
-//    confidence: 0.927025,
-//    value: 'תל אביב',
-//    type: 'value',
-//    _entity: 'location',
-//    _body: 'תל אביב',
-//    _start: 52,
-//    _end: 59
-//  }
