@@ -25,8 +25,8 @@ exports.getResponse = function(messageObject) {
 	// Print Money amount
 	const amount_of_money = nlpDiagnosis.getEntity(messageObject, 'amount_of_money');
 	if (amount_of_money && amount_of_money.to && amount_of_money.from) {
-		description += ', החל מ - ' + amount_of_money.from.value + ' ועד - ' + amount_of_money.to.value + ' שקלים';
-	} else if (amount_of_money && amount_of_money.to.value) {
+		description += ', החל מ ' + amount_of_money.from.value + ' ועד  ' + amount_of_money.to.value + ' שקלים';
+	} else if (amount_of_money && amount_of_money.to) {
 		description += 'במחיר של עד ' + amount_of_money.to.value + ' שקלים. ';
 	}
 
