@@ -32,11 +32,10 @@ function handlePayload(messageObject) {
 function handleFreeText(messageObject) {
 	// Log to console type of message
 	console.log('[#] Message is a free text.');
-	console.log('nlp: ', messageObject.message.nlp);
 	// Get intent of message
-	const messageIntent = nlpDiagnosis.getIntent(messageObject).value;
-	// Extract free text from message object
-	const textMessage = incomingMessageUtils.getTextFromMessage(messageObject);
+	const messageIntent = nlpDiagnosis.getIntent(messageObject);
+	// Check to which pattern best match to found intent
+	if (messageIntent.value === 'search_query') return require('../../Patterns/search_pattern');
 	// Cant understand free text intent
 	return undefined;
 }
