@@ -3,25 +3,35 @@ const nlpDiagnosis = require("../Services/Domain/nlp_diagnosis");
 
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
-  console.log("object : ", nlpDiagnosis.getEntity(messageObject, "object"));
-  console.log("amount_of_money : ", nlpDiagnosis.getEntity(messageObject, "amount_of_money"));
-  console.log("pick_up : ", nlpDiagnosis.getEntity(messageObject, "pick_up"));
-  console.log("location : ", nlpDiagnosis.getEntity(messageObject, "location"));
+  // Random start message
+  startersMessages = ["אני על זה!", "מתחיל בחיפושים!", "אחלה בחירה! מתחיל בחיפושים"];
+  var messageStart = startersMessages[Math.floor(Math.random() * startersMessages.length)];
 
-  const messageStart = "אני על זה!";
+  // Init descriptions
+  var description = "";
 
-  var description;
-
+  // Print Object
   const object = nlpDiagnosis.getEntity(messageObject, "object").value;
-  if (object) description += "מחפש לך " + object;
+  if (object) description += "מחפש לך " + object + " ";
+  else return undefined;
 
+  // Print Money amount
   const amount_of_money = nlpDiagnosis.getEntity(messageObject, "amount_of_money");
   if (amount_of_money && amount_of_money.to && amount_of_money.from) {
     description +=
       ", החל מ - " + amount_of_money.from.value + " ועד - " + amount_of_money.to.value + " שקלים";
   } else if (amount_of_money && amount_of_money.to.value) {
-    description += "במחיר של עד " + amount_of_money.to.value + "שקלים";
+    description += "במחיר של עד " + amount_of_money.to.value + " שקלים.\n";
   }
+
+  // Print pick up\deleviry
+  const pick_up = nlpDiagnosis.getEntity(messageObject, "pick_up");
+  const delivery = nlpDiagnosis.getEntity(messageObject, "delivery");
+  if (pick_up) description += "לאיסוף עצמי ";
+  else if (delivery) description += "למשלוח עד הבית ";
+
+  // Print location
+  if ((pick_up || delivery) && location) description += "באיזור " + location.value + ".";
 
   const responseActions = undefined;
 
