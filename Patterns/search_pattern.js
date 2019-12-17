@@ -1,6 +1,8 @@
 'use strict';
 const nlpDiagnosis = require('../Services/Domain/nlp_diagnosis');
 
+const SPACE = ' ';
+
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
 	// Random start message
@@ -25,20 +27,21 @@ exports.getResponse = function(messageObject) {
 	// Print Money amount
 	const amount_of_money = nlpDiagnosis.getEntity(messageObject, 'amount_of_money');
 	if (amount_of_money && amount_of_money.to && amount_of_money.from) {
-		description += ', החל מ ' + amount_of_money.from.value + ' ועד ' + amount_of_money.to.value + ' שקלים.';
+		description +=
+			SPACE + 'בטווח של' + SPACE + amount_of_money.from.value + '-' + amount_of_money.to.value + ' שקלים.';
 	} else if (amount_of_money && amount_of_money.to) {
-		description += ' במחיר של עד ' + amount_of_money.to.value + 'שקלים.';
+		description += SPACE + 'במחיר של עד' + SPACE + amount_of_money.to.value + SPACE + 'שקלים.';
 	}
 
 	// Print pick up\deleviry
 	const pick_up = nlpDiagnosis.getEntity(messageObject, 'pick_up');
 	const delivery = nlpDiagnosis.getEntity(messageObject, 'delivery');
-	if (pick_up) description += ' לאיסוף עצמי ';
-	else if (delivery) description += ' למשלוח עד הבית ';
+	if (pick_up) description += SPACE + 'לאיסוף עצמי';
+	else if (delivery) description += SPACE + 'למשלוח עד הבית';
 
 	// Print location
 	const location = nlpDiagnosis.getEntity(messageObject, 'location');
-	if ((pick_up || delivery) && location) description += 'באיזור ' + location.value;
+	if ((pick_up || delivery) && location) description += SPACE + 'באיזור' + SPACE + location.value;
 
 	// Add dot
 	description += '.';
