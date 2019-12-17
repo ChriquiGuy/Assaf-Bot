@@ -24,7 +24,7 @@ function filterUnConfident(nlpEntitiesArray, limit) {
 exports.getEntity = function getNlpEntityByName(messageObject, entity) {
   if (messageObject && messageObject.message && messageObject.message.nlp) {
     const nlp = messageObject.message.nlp;
-    if (nlp.entities[entity]) return nlp.entities[entity][0];
+    if (nlp.entities && nlp.entities[entity]) return nlp.entities[entity][0];
   }
   console.log("Entity " + entity + " not found");
   return undefined;
@@ -34,7 +34,7 @@ exports.getEntity = function getNlpEntityByName(messageObject, entity) {
 exports.getIntent = function getIntent(messageObject) {
   if (messageObject && messageObject.message && messageObject.message.nlp) {
     const nlp = messageObject.message.nlp;
-    if (nlp.entities["intent"]) return nlp.entities["intent"][0];
+    if (nlp.entities && nlp.entities["intent"]) return nlp.entities["intent"][0];
   }
   console.log("No intent found");
   return undefined;

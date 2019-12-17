@@ -13,7 +13,14 @@ exports.getResponse = function(messageObject) {
   // Print Object
   const object = nlpDiagnosis.getEntity(messageObject, "object").value;
   if (object) description += "מחפש לך " + object + " ";
-  else return undefined;
+  else
+    return {
+      messages: [
+        "אני מצטער אני חדש בארץ, ולא כל כך הבנתי מה אתה מנסה לחפש",
+        "אשמח אם תוכל לנסות להסביר לי בצורה פשוטה יותר"
+      ],
+      actions: [undefined]
+    };
 
   // Print Money amount
   const amount_of_money = nlpDiagnosis.getEntity(messageObject, "amount_of_money");
