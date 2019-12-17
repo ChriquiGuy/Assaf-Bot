@@ -12,7 +12,7 @@ exports.getResponse = function(messageObject) {
 
 	// Print Object
 	const object = nlpDiagnosis.getEntity(messageObject, 'object').value;
-	if (object) description += 'מחפש לך ' + object + ' ';
+	if (object) description += 'מחפש לך ' + object;
 	else
 		return {
 			messages: [
@@ -25,7 +25,7 @@ exports.getResponse = function(messageObject) {
 	// Print Money amount
 	const amount_of_money = nlpDiagnosis.getEntity(messageObject, 'amount_of_money');
 	if (amount_of_money && amount_of_money.to && amount_of_money.from) {
-		description += ', החל מ ' + amount_of_money.from.value + ' ועד  ' + amount_of_money.to.value + ' שקלים';
+		description += ', החל מ ' + amount_of_money.from.value + ' ועד ' + amount_of_money.to.value + ' שקלים.';
 	} else if (amount_of_money && amount_of_money.to) {
 		description += 'במחיר של עד ' + amount_of_money.to.value + ' שקלים. ';
 	}
@@ -33,8 +33,8 @@ exports.getResponse = function(messageObject) {
 	// Print pick up\deleviry
 	const pick_up = nlpDiagnosis.getEntity(messageObject, 'pick_up');
 	const delivery = nlpDiagnosis.getEntity(messageObject, 'delivery');
-	if (pick_up) description += 'לאיסוף עצמי ';
-	else if (delivery) description += 'למשלוח עד הבית ';
+	if (pick_up) description += ' לאיסוף עצמי ';
+	else if (delivery) description += ' למשלוח עד הבית ';
 
 	// Print location
 	const location = nlpDiagnosis.getEntity(messageObject, 'location');
