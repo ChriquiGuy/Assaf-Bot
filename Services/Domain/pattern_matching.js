@@ -35,7 +35,7 @@ function handleFreeText(messageObject) {
 	// Get intent of message
 	const messageIntent = nlpDiagnosis.getIntent(messageObject);
 	// Check to which pattern best match to found intent
-	if (messageIntent.value === 'search_query') return require('../../Patterns/search_pattern');
+	if (messageIntent && messageIntent.value === 'search_query') return require('../../Patterns/search_pattern');
 	// Cant understand free text intent
 	return undefined;
 }
