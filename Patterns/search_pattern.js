@@ -38,6 +38,7 @@ exports.getResponse = function(messageObject) {
   else if (delivery) description += "למשלוח עד הבית ";
 
   // Print location
+  const location = nlpDiagnosis.getEntity(messageObject, "location");
   if ((pick_up || delivery) && location) description += "באיזור " + location.value + ".";
 
   const responseActions = undefined;
