@@ -13,8 +13,8 @@ exports.getResponse = function(messageObject) {
 	var description = '';
 
 	// Print Object
-	const object = nlpDiagnosis.getEntity(messageObject, 'object').value;
-	if (object) description += 'מחפש לך ' + object;
+	const object = nlpDiagnosis.getEntity(messageObject, 'object');
+	if (object) description += 'מחפש לך ' + object.value;
 	else
 		return {
 			messages: [
