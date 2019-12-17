@@ -49,6 +49,6 @@ async function sendResponseMessages(senderId, response) {
 	for (const message of response.messages) {
 		// Send message to the sender
 		sendMessage(senderId, message);
-		wait.for.time(0.2);
+		wait.for.time(0.4);
 	}
 }

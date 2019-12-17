@@ -38,8 +38,10 @@ exports.getResponse = function(messageObject) {
 
 	// Print location
 	const location = nlpDiagnosis.getEntity(messageObject, 'location');
-	if ((pick_up || delivery) && location) description += 'באיזור ' + location.value + '.';
+	if ((pick_up || delivery) && location) description += 'באיזור ' + location.value;
 
+	// Add dot
+	description += '.';
 	const responseActions = undefined;
 
 	const response = {
