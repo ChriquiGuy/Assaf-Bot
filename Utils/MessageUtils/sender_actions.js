@@ -15,12 +15,12 @@ exports.markTyping = function(senderId, message) {
 exports.markSeen = function(senderId, incomingMeassage) {
 	messageClient.markSeen(senderId);
 	const incomingMeassageString = incomingMessageUtils.getTextFromMessage(incomingMeassage);
-	wait.for.time(calculateWaitTime(incomingMeassageString) - 1);
+	wait.for.time(calculateWaitTime(incomingMeassageString));
 };
 
 // Calaculate amount of time by text length
 function calculateWaitTime(message) {
 	let delay = message.length / 10;
-	if (delay > 4) delay = 4;
+	if (delay > 3) delay = 3;
 	return delay;
 }
