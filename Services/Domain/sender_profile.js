@@ -3,17 +3,14 @@ const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_A
 
 // Save to an object sender profile details
 exports.getSenderProfile = async function(senderPsid) {
-  messageClient
-    .getUserProfile(senderPsid, [
-      "first_name",
-      "last_name",
-      "profile_pic",
-      "locale",
-      "timezone",
-      "gender"
-    ])
-    .then(profileObject => {
-      console.log("profileObject : ", profileObject);
-      return profileObject;
-    });
+  const profileObject = await messageClient.getUserProfile(senderPsid, [
+    "first_name",
+    "last_name",
+    "profile_pic",
+    "locale",
+    "timezone",
+    "gender"
+  ]);
+
+  return profileObject;
 };
