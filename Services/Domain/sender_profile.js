@@ -4,14 +4,14 @@ const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_A
 exports.getSenderProfile = function(senderPsid) {
   const profileObject = messageClient
     .getUserProfile(senderPsid, [
-      first_name,
-      last_name,
-      profile_pic,
-      locale,
-      timezone,
-      gender,
-      is_payment_enabled,
-      last_ad_referral
+      "first_name",
+      "last_name",
+      "profile_pic",
+      "locale",
+      "timezone",
+      "gender",
+      "is_payment_enabled",
+      "last_ad_referral"
     ])
     .then(result => {
       console.log("Profile : ", profileObject);
