@@ -50,7 +50,7 @@ function creatSearchDescription(serachProduct) {
 	// Add product price to text
 	if (serachProduct.price && serachProduct.price.to && serachProduct.price.from) {
 		description +=
-			SPACE + 'בטווח של' + SPACE + serachProduct.price.from + '-' + serachProduct.price.from + SPACE + 'שקלים';
+			SPACE + 'בטווח של' + SPACE + serachProduct.price.from + '-' + serachProduct.price.to + SPACE + 'שקלים';
 	} else if (serachProduct.price && serachProduct.price.to) {
 		description += SPACE + 'עד' + SPACE + serachProduct.price.to + SPACE + 'שקלים';
 	}
