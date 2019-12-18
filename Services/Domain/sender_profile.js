@@ -11,6 +11,6 @@ exports.getSenderProfile = async function(senderPsid) {
     "timezone",
     "gender"
   ]);
-
+  console.log("profileObject : ", profileObject);
   return profileObject;
 };
