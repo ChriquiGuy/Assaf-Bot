@@ -1,8 +1,9 @@
 const facebook = require("fb-messenger-bot-api");
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
-exports.getSenderProfile = function(senderPsid) {
-  const profileObject = messageClient
+// Save to an object sender profile details
+exports.getSenderProfile = async function(senderPsid) {
+  messageClient
     .getUserProfile(senderPsid, [
       "first_name",
       "last_name",
@@ -11,8 +12,8 @@ exports.getSenderProfile = function(senderPsid) {
       "timezone",
       "gender"
     ])
-    .then(result => {
-      console.log("result : ", result);
+    .then(profileObject => {
+      console.log("profileObject : ", profileObject);
+      return profileObject;
     });
-  console.log("Profile : ", profileObject);
 };
