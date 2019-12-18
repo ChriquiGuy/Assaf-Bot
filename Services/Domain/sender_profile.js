@@ -9,12 +9,10 @@ exports.getSenderProfile = function(senderPsid) {
       "profile_pic",
       "locale",
       "timezone",
-      "gender",
-      "is_payment_enabled",
-      "last_ad_referral"
+      "gender"
     ])
     .then(result => {
-      console.log("Profile : ", profileObject);
       console.log("result : ", result);
     });
+  console.log("Profile : ", profileObject);
 };
