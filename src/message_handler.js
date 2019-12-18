@@ -7,6 +7,7 @@ const facebook = require("fb-messenger-bot-api");
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 const incomingMessageUtils = require("../Utils/MessageUtils/incoming_message_ultis");
 const profile = require("../Services/Domain/sender_profile");
+const actionManager = require("./action_manager");
 
 // Handles incoming messages
 exports.handleIncomingMessage = async function(messageObject) {
@@ -15,16 +16,18 @@ exports.handleIncomingMessage = async function(messageObject) {
   // Get sender profile
   // ! - Check how await and async work
   const senderProfile = await profile.getSenderProfile(senderId);
+  // Add sender profile to messageObject
+  messageObject.profile = senderProfile;
   // Extract message string from message object
   const messageText = incomingMessageUtils.getTextFromMessage(messageObject);
   // Log to console incoming message
   console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${messageText}.`);
-  // Add sender profile to messageObject
-  messageObject.profile = senderProfile;
   // Get response object to the incoming message
   let response = responseManager.matchResponse(messageObject);
 
   if (response) {
+    // Send response to execute actions
+    await actionManager.executeResponseActions(response);
     // Mark message as seen and wait 'x' amount of time before response back (x=reading time)
     messengerAction.markSeen(senderId, messageObject);
     // If appropriate response found, send all message in it to the client

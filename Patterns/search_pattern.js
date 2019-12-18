@@ -27,7 +27,8 @@ exports.getResponse = function(messageObject) {
   const response = {
     messages: [preMessages, searchDescription],
     actions: [responseActions],
-    product: serachProduct
+    product: serachProduct,
+    sender: messageObject.sender.id
   };
   // Returning the response object
   return response;
