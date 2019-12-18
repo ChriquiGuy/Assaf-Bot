@@ -14,7 +14,6 @@ exports.handleIncomingMessage = async function(messageObject) {
   // Extract sender id from message object
   const senderId = messageObject.sender.id;
   // Get sender profile
-  // ! - Check how await and async work
   const senderProfile = await profile.getSenderProfile(senderId);
   // Add sender profile to messageObject
   messageObject.profile = senderProfile;
@@ -26,8 +25,8 @@ exports.handleIncomingMessage = async function(messageObject) {
   let response = responseManager.matchResponse(messageObject);
 
   if (response) {
-    // Send response to execute actions
-    await actionManager.executeResponseActions(response);
+    // Send response to execute actions and update response
+    response = await actionManager.executeResponseActions(response);
     // Mark message as seen and wait 'x' amount of time before response back (x=reading time)
     messengerAction.markSeen(senderId, messageObject);
     // If appropriate response found, send all message in it to the client
