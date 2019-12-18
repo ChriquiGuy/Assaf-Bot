@@ -68,15 +68,15 @@ exports.getResponse = function(messageObject) {
   return response;
 };
 
-function CreatSearchObject(messageObject) {
-  const searchObject = {
-    name = undefined,
-    type = undefined,
-    details = undefined,
-    color = undefined,
-    size = undefined,
-    shipment =undefined,
-    loaction = undefined,
-    price = {from = undefined , to = undefined},
-  };
-}
+// function CreatSearchObject(messageObject) {
+//   const searchObject = {
+//     name = undefined,
+//     type = undefined,
+//     details = undefined,
+//     color = undefined,
+//     size = undefined,
+//     shipment =undefined,
+//     loaction = undefined,
+//     price = {from = undefined , to = undefined},
+//   };
+// }
