@@ -13,7 +13,7 @@ exports.handleIncomingMessage = function(messageObject) {
   // Extract sender id from message object
   const senderId = messageObject.sender.id;
   // Get sender profile
-  const senderProfile = profile.getSenderProfile(senderId);
+  const senderProfile =  await profile.getSenderProfile(senderId);
   // Extract message string from message object
   const messageText = incomingMessageUtils.getTextFromMessage(messageObject);
   // Log to console incoming message
