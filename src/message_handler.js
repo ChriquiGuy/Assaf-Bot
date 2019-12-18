@@ -9,11 +9,11 @@ const incomingMessageUtils = require("../Utils/MessageUtils/incoming_message_ult
 const profile = require("../Services/Domain/sender_profile");
 
 // Handles incoming messages
-exports.handleIncomingMessage = function(messageObject) {
+exports.handleIncomingMessage = async function(messageObject) {
   // Extract sender id from message object
   const senderId = messageObject.sender.id;
   // Get sender profile
-  const senderProfile =  await profile.getSenderProfile(senderId);
+  const senderProfile = await profile.getSenderProfile(senderId);
   // Extract message string from message object
   const messageText = incomingMessageUtils.getTextFromMessage(messageObject);
   // Log to console incoming message
