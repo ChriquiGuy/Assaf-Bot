@@ -13,12 +13,14 @@ exports.handleIncomingMessage = async function(messageObject) {
   // Extract sender id from message object
   const senderId = messageObject.sender.id;
   // Get sender profile
+  // ! - Check how await and async work
   const senderProfile = await profile.getSenderProfile(senderId);
   // Extract message string from message object
   const messageText = incomingMessageUtils.getTextFromMessage(messageObject);
   // Log to console incoming message
   console.log(`Incoming message from PSID: ${senderId}.\nMessage: ${messageText}.`);
-
+  // Add sender profile to messageObject
+  messageObject.profile = senderProfile;
   // Get response object to the incoming message
   let response = responseManager.matchResponse(messageObject);
 
