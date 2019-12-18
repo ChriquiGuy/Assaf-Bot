@@ -23,7 +23,7 @@ function calculateWaitTime(message, read = undefined) {
 	// Get number of words in string
 	const wordCount = message.split(' ').length;
 	// Delay is 0.6(wirte)/0.3(read) sec for word
-	const wordTime = read ? 0.25 : 0.5;
+	const wordTime = read ? 0.25 : 0.4;
 	var delay = wordCount * wordTime;
 	if (delay > 10) delay = 10;
 	return delay;
