@@ -81,7 +81,7 @@ function creatSearchDescription(serachProduct) {
 // Return product name from message
 function getObjectName(messageObject) {
   const name = nlpDiagnosis.getEntity(messageObject, "object");
-  if (name) return name;
+  if (name) return name.value;
 }
 
 // Return product price from message
