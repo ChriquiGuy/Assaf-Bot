@@ -26,7 +26,7 @@ exports.handleIncomingMessage = async function(messageObject) {
 
 	if (response) {
 		// Send response to execute actions and update response
-		// response = await actionManager.executeResponseActions(response);
+		response = await actionManager.executeResponseActions(response);
 		// Mark message as seen and wait 'x' amount of time before response back (x=reading time)
 		messengerAction.markSeen(senderId, messageObject);
 		// If appropriate response found, send all message in it to the client
