@@ -59,8 +59,10 @@ async function sendResponseMessages(senderId, response) {
 		wait.for.time(1);
 	}
 	if (response.Horizontal_List) {
-		messageClient.sendGenericTemplate(senderId, [ response.Horizontal_List ]).then((result) => {
-			`Result sent with: ${result}`;
-		});
+		await messageClient.sendGenericTemplate(senderId, [ response.Horizontal_List ]);
+
+		// messageClient.sendGenericTemplate(senderId, [ response.Horizontal_List ]).then((result) => {
+		// 	`Result sent with: ${result}`;
+		// });
 	}
 }
