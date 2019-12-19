@@ -23,7 +23,7 @@ exports.getResponse = function(messageObject) {
 	// Creates a text response detailing the product we were asked to search
 	const searchDescription = creatSearchDescription(serachProduct);
 	// Add relevant action to this response
-	const responseActions = ACTIONS_FOLDER.join('search_product');
+	const responseActions = undefined; // ACTIONS_FOLDER + 'search_product';
 	// Create an response object
 	const response = {
 		messages: [ preMessages, searchDescription ],
