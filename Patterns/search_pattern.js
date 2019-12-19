@@ -124,8 +124,32 @@ function unknowObjectRespones() {
 function unvalidObjectRespones() {
 	return {
 		messages: [
-			'אני מצטער מאוד, אבל אני אסף לא דורון',
-			'אם אתה מחפש דירה הייתי מציע לך לדבר עם חבר שלי דורון, אני בטוח שהוא יעזור לך למצוא את הדירה הבאה שלך'
+			'אני מצטער מאוד, אבל אני אסף לא דורון!',
+			'אם אתה מחפש דירה אני מציע לך לדבר עם חבר שלי דורון, הוא ימצא לך את דירת החלומות'
+		],
+		Horizontal_List: [
+			{
+				title: 'Welcome!',
+				image_url: 'https://petersfancybrownhats.com/company_image.png',
+				subtitle: 'We have the right hat for everyone.',
+				default_action: {
+					type: 'web_url',
+					url: 'https://petersfancybrownhats.com/view?item=103',
+					webview_height_ratio: 'tall'
+				},
+				buttons: [
+					{
+						type: 'web_url',
+						url: 'https://petersfancybrownhats.com',
+						title: 'View Website'
+					},
+					{
+						type: 'postback',
+						title: 'Start Chatting',
+						payload: 'DEVELOPER_DEFINED_PAYLOAD'
+					}
+				]
+			}
 		],
 		actions: [ undefined ]
 	};
