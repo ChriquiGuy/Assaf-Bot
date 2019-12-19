@@ -2,6 +2,7 @@
 const nlpDiagnosis = require('../Services/Domain/nlp_diagnosis');
 
 const SPACE = ' ';
+const ACTIONS_FOLDER = process.cwd().join('/Actions');
 
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
@@ -22,7 +23,7 @@ exports.getResponse = function(messageObject) {
 	// Creates a text response detailing the product we were asked to search
 	const searchDescription = creatSearchDescription(serachProduct);
 	// Add relevant action to this response
-	const responseActions = undefined;
+	const responseActions = ACTIONS_FOLDER.join('search_product');
 	// Create an response object
 	const response = {
 		messages: [ preMessages, searchDescription ],
