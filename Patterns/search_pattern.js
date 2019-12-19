@@ -2,7 +2,8 @@
 const nlpDiagnosis = require('../Services/Domain/nlp_diagnosis');
 
 const SPACE = ' ';
-// const ACTIONS_FOLDER = process.cwd().join('/Actions');
+const ACTIONS_FOLDER = process.cwd() + '/Actions';
+const unvalidProduct = [ 'דירה', 'דירת' ];
 
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
@@ -13,7 +14,9 @@ exports.getResponse = function(messageObject) {
 	// Find name from message and insert to object
 	serachProduct.name = getObjectName(messageObject);
 	// Check if an object not found, send unknow object response
+	// Else check if the product is a valid product for search
 	if (!serachProduct.name) return unknowObjectRespones();
+	else if (checkValidation(serachProduct.name)) return unvalidObjectRespones();
 	// Find price from message and insert to object {from, to}
 	serachProduct.price = getObjectPrice(messageObject);
 	// Find shipment from message and insert to object {pick_up, delivery}
@@ -21,9 +24,9 @@ exports.getResponse = function(messageObject) {
 	// Find location from message and insert to object
 	serachProduct.location = getObjectLocation(messageObject);
 	// Creates a text response detailing the product we were asked to search
-	const searchDescription = creatSearchDescription(serachProduct);
+	const searchDescription = createSearchDescription(serachProduct);
 	// Add relevant action to this response
-	const responseActions = undefined; // ACTIONS_FOLDER + 'search_product';
+	const responseActions = ACTIONS_FOLDER + 'search_product';
 	// Create an response object
 	const response = {
 		messages: [ preMessages, searchDescription ],
@@ -43,7 +46,7 @@ function getPreMessage() {
 }
 
 // Build a string that describe the product we requested to search
-function creatSearchDescription(serachProduct) {
+function createSearchDescription(serachProduct) {
 	// Init description text
 	var description = '';
 	// Add product name to text
@@ -98,12 +101,31 @@ function getObjectLocation(messageObject) {
 	if (location) return location.value;
 }
 
+// Else check if the product is a valid product for search
+function checkValidation(productName) {
+	unvalidProduct.forEach((word) => {
+		if (productName.includes(word)) return false;
+	});
+	return true;
+}
+
 // Return response wehen product not found in message
 function unknowObjectRespones() {
 	return {
 		messages: [
 			'אני מצטער אני חדש בארץ, ולא כל כך הבנתי מה אתה מנסה לחפש',
 			'אשמח אם תוכל לנסות להסביר לי בצורה פשוטה יותר'
+		],
+		actions: [ undefined ]
+	};
+}
+
+// Return response wehen product is not a valid product
+function unvalidObjectRespones() {
+	return {
+		messages: [
+			'אני מצטער מאוד, אבל אני אסף לא דורון',
+			'אם אתה מחפש דירה הייתי מציע לך לדבר עם חבר שלי דורון, אני בטוח שהוא יעזור לך למצוא את הדירה הבאה שלך'
 		],
 		actions: [ undefined ]
 	};
