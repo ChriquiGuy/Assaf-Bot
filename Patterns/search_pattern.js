@@ -2,7 +2,7 @@
 const nlpDiagnosis = require('../Services/Domain/nlp_diagnosis');
 
 const SPACE = ' ';
-const ACTIONS_FOLDER = process.cwd().join('/Actions');
+// const ACTIONS_FOLDER = process.cwd().join('/Actions');
 
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
