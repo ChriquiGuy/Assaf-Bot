@@ -104,9 +104,9 @@ function getObjectLocation(messageObject) {
 // Else check if the product is a valid product for search
 function checkValidation(productName) {
 	unvalidProduct.forEach((word) => {
-		if (productName.includes(word)) return false;
+		if (productName.includes(word)) return true;
 	});
-	return true;
+	return false;
 }
 
 // Return response wehen product not found in message
