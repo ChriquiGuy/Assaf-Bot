@@ -125,30 +125,33 @@ function unvalidObjectRespones() {
 			'אני חושב שהתבלבלת, קוראים לי אסף',
 			'אם אתה מחפש דירה אני מציע לך לדבר עם חבר שלי דורון, הוא ימצא לך את דירת החלומות'
 		],
-		Horizontal_List: [
-			{
-				title: 'Welcome!',
-				image_url: 'https://petersfancybrownhats.com/company_image.png',
-				subtitle: 'We have the right hat for everyone.',
-				default_action: {
-					type: 'web_url',
-					url: 'https://petersfancybrownhats.com/view?item=103',
-					webview_height_ratio: 'tall'
-				},
-				buttons: [
-					{
+		Horizontal_List: {
+			template_type: 'generic',
+			elements: [
+				{
+					title: 'Welcome!',
+					image_url: 'https://petersfancybrownhats.com/company_image.png',
+					subtitle: 'We have the right hat for everyone.',
+					default_action: {
 						type: 'web_url',
-						url: 'https://petersfancybrownhats.com',
-						title: 'View Website'
+						url: 'https://petersfancybrownhats.com/view?item=103',
+						webview_height_ratio: 'tall'
 					},
-					{
-						type: 'postback',
-						title: 'Start Chatting',
-						payload: 'DEVELOPER_DEFINED_PAYLOAD'
-					}
-				]
-			}
-		],
+					buttons: [
+						{
+							type: 'web_url',
+							url: 'https://petersfancybrownhats.com',
+							title: 'View Website'
+						},
+						{
+							type: 'postback',
+							title: 'Start Chatting',
+							payload: 'DEVELOPER_DEFINED_PAYLOAD'
+						}
+					]
+				}
+			]
+		},
 		actions: [ undefined ]
 	};
 }
