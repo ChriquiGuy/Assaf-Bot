@@ -16,7 +16,7 @@ exports.getResponse = function(messageObject) {
 	// Check if an object not found, send unknow object response
 	// Else check if the product is a valid product for search
 	if (!serachProduct.name) return unknowObjectRespones();
-	else if (checkValidation(serachProduct.name)) return unvalidObjectRespones();
+	else if (!checkValidation(serachProduct.name)) return unvalidObjectRespones();
 	// Find price from message and insert to object {from, to}
 	serachProduct.price = getObjectPrice(messageObject);
 	// Find shipment from message and insert to object {pick_up, delivery}
@@ -101,16 +101,14 @@ function getObjectLocation(messageObject) {
 	if (location) return location.value;
 }
 
-// Else check if the product is a valid product for search
+// Check if the product is a valid product for search
 function checkValidation(productName) {
-	unvalidProduct.forEach(function(word) {
-		if (productName.includes(word)) {
-			console.log('True, ' + 'Word:', word, ' productName: ', productName);
-			return true;
-		}
-	});
-	console.log('False', 'productName', productName);
-	return false;
+	for (let word of unvalidProduct) {
+		console.log('false, ' + 'Word:', word, ' productName: ', productName);
+		return false;
+	}
+	console.log('true', 'productName', productName);
+	return true;
 }
 
 // Return response wehen product not found in message
