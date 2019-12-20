@@ -50,7 +50,14 @@ const sendMessage = function(senderId, response) {
 	});
 };
 
-// Handle response messages array
+// Send response tamplate messages to sender
+const sendTemplateMessage = function(senderId, response) {
+	messageClient.sendTemplateMessage(senderId, response.templateMessage).then((result) => {
+		`Result sent with: ${result}`;
+	});
+};
+
+// Handle response messages
 async function sendResponseMessages(senderId, response) {
 	// Runs on message responses array and send them one by one
 	for (const message of response.messages) {
@@ -58,13 +65,9 @@ async function sendResponseMessages(senderId, response) {
 		sendMessage(senderId, message);
 		wait.for.time(1);
 	}
-	if (response.Horizontal_List) {
-		try {
-			messageClient.sendTemplateMessage(senderId, response.Horizontal_List).then((result) => {
-				`Result sent with: ${result}`;
-			});
-		} catch (e) {
-			console.log('[!] Error: ', e);
-		}
+	// Check if template message exist in response
+	if (response.templateMessage) {
+		// Send the template mesage
+		sendTemplateMessage(senderId, response);
 	}
 }
