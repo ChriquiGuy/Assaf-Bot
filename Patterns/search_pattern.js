@@ -103,7 +103,7 @@ function getObjectLocation(messageObject) {
 
 // Else check if the product is a valid product for search
 function checkValidation(productName) {
-	unvalidProduct.forEach((word) => {
+	unvalidProduct.forEach(function(word) {
 		if (productName.includes(word)) {
 			console.log('True, ' + 'Word:', word, ' productName: ', productName);
 			return true;
