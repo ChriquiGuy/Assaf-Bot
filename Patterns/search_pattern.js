@@ -122,7 +122,7 @@ function unknowObjectRespones() {
 function unvalidObjectRespones() {
 	return {
 		messages: [
-			'אני מצטער מאוד, אבל אני אסף לא דורון!',
+			'אני חושב שהתבלבלת, קוראים לי אסף',
 			'אם אתה מחפש דירה אני מציע לך לדבר עם חבר שלי דורון, הוא ימצא לך את דירת החלומות'
 		],
 		Horizontal_List: [
