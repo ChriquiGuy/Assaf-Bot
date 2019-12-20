@@ -103,7 +103,7 @@ function getObjectLocation(messageObject) {
 
 // Check if the product is a valid product for search
 function checkValidation(productName) {
-	for (let word of unvalidProduct) if (word === productName) return false;
+	for (let word of unvalidProduct) if (productName.includes(word)) return false;
 	return true;
 }
 
