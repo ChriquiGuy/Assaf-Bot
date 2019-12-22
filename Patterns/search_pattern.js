@@ -1,6 +1,6 @@
 "use strict";
 const nlpDiagnosis = require("../Services/Domain/nlp_diagnosis");
-const staticRespones = require("../Utils/MessageUtils/Templates/Static/respones_templates");
+const staticResponse = require("../Utils/MessageUtils/Templates/Static/respones_templates");
 const staticStrings = require("../Utils/MessageUtils/Templates/Static/strings");
 
 const SPACE = " ";
@@ -120,10 +120,10 @@ function checkValidation(productName) {
 
 // Return response wehen product not found in message
 function unknowProductRespones() {
-  return staticRespones.UnknownProduct;
+  return staticResponse.UnknownProduct;
 }
 
 // Return response wehen product is not a valid product
 function unvalidObjectRespones() {
-  return staticRespones.DooronTemplate;
+  return staticResponse.DooronTemplate;
 }
