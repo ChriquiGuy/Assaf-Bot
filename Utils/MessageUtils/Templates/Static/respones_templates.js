@@ -1,5 +1,23 @@
 "use strict";
 
+// Unknown product in serach query
+const WelcomeMessage = {
+  messages: [
+    "שלום קוראים לי אסף, אני אעזור לך למצוא את המוצר שאתה מחפש. \nאני רק צריך שתתאר לי אותו במילים פשוטות ואעדכן אותך עבור כל מוצר רלוונטי שעולה לרשת.",
+    "לדוגמא: מחפש אופני סינגל ספיד עד 2000 שח לאיסוף עצמי מאיזור תל אביב."
+  ],
+  actions: [undefined]
+};
+
+// Unknown product in serach query
+const UnknownProduct = {
+  messages: [
+    "אני מצטער אני חדש בארץ, ולא כל כך הבנתי מה אתה מנסה לחפש",
+    "אשמח אם תוכל לנסות להסביר לי בצורה פשוטה יותר"
+  ],
+  actions: [undefined]
+};
+
 // Link to dooron page
 const DooronTemplate = {
   messages: [
@@ -23,7 +41,7 @@ const DooronTemplate = {
           {
             type: "web_url",
             url: "https://www.facebook.com/dorontlv",
-            title: "שלח הודעה לדורון!"
+            title: "!שלח הודעה לדורון"
           }
         ]
       }
@@ -33,3 +51,5 @@ const DooronTemplate = {
 };
 
 exports.DooronTemplate = DooronTemplate;
+exports.UnknownProduct = UnknownProduct;
+exports.WelcomeMessage = WelcomeMessage;

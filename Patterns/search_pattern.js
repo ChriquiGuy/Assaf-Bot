@@ -1,6 +1,6 @@
 "use strict";
 const nlpDiagnosis = require("../Services/Domain/nlp_diagnosis");
-const staticTemplates = require("../Templates/static_template");
+const staticRespones = require("../Utils/MessageUtils/Templates/Static/respones_templates");
 
 const SPACE = " ";
 const ACTIONS_FOLDER = process.cwd() + "/Actions";
@@ -16,7 +16,7 @@ exports.getResponse = function(messageObject) {
   serachProduct.name = getObjectName(messageObject);
   // Check if an object not found, send unknow object response
   // Else check if the product is a valid product for search
-  if (!serachProduct.name) return unknowObjectRespones();
+  if (!serachProduct.name) return unknowProductRespones();
   else if (!checkValidation(serachProduct.name)) return unvalidObjectRespones();
   // Find price from message and insert to object {from, to}
   serachProduct.price = getObjectPrice(messageObject);
@@ -124,17 +124,11 @@ function checkValidation(productName) {
 }
 
 // Return response wehen product not found in message
-function unknowObjectRespones() {
-  return {
-    messages: [
-      "אני מצטער אני חדש בארץ, ולא כל כך הבנתי מה אתה מנסה לחפש",
-      "אשמח אם תוכל לנסות להסביר לי בצורה פשוטה יותר"
-    ],
-    actions: [undefined]
-  };
+function unknowProductRespones() {
+  return staticRespones.UnknownProduct;
 }
 
 // Return response wehen product is not a valid product
 function unvalidObjectRespones() {
-  return staticTemplates.DooronTemplate;
+  return staticRespones.DooronTemplate;
 }
