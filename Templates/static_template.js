@@ -32,4 +32,4 @@ const DooronTemplate = {
   actions: [undefined]
 };
 
-exports = DooronTemplate;
+exports.DooronTemplate;
