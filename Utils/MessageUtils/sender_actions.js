@@ -20,12 +20,14 @@ exports.markSeen = function(senderId, incomingMeassage) {
 
 // Calaculate amount of time by text length
 function calculateWaitTime(message, read = undefined, time = undefined) {
+	// If time exiest, return time
+	if (time) return time > 10 ? 10 : time;
 	// Get number of words in string
 	const wordCount = message.split(' ').length;
 	// Delay is 0.6(wirte)/0.3(read) sec for word
 	const wordTime = read ? 0.25 : 0.4;
 	// Calculate delay
-	var delay = wordCount * (time || wordTime);
+	var delay = wordCount * wordTime;
 	if (delay > 10) delay = 10;
 	return delay;
 }
