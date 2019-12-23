@@ -3,7 +3,7 @@ const nlpDiagnosis = require('../Services/Domain/nlp_diagnosis');
 
 const SPACE = ' ';
 const ACTIONS_FOLDER = process.cwd() + '/Actions';
-const unvalidProduct = [ 'דירה', 'דירת' ];
+const unvalidProduct = [ 'דירה', 'דירת', 'בית', 'נכס', 'דירות' ];
 
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
@@ -40,7 +40,15 @@ exports.getResponse = function(messageObject) {
 
 // Return random pre message
 function getPreMessage() {
-	const preMessages = [ 'אני על זה!', 'מתחיל בחיפושים!', 'אחלה בחירה! מתחיל בחיפושים', 'רות עבור', 'רות היישר!' ];
+	const preMessages = [
+		'אני על זה!',
+		'מתחיל בחיפושים!',
+		'אחלה בחירה! מתחיל בחיפושים',
+		'רות עבור',
+		'רות היישר!',
+		'אחלה בחירה',
+		'מגניב, מתחיל בחיפושים'
+	];
 	// Randomize from array of messages and return
 	return preMessages[Math.floor(Math.random() * preMessages.length)];
 }
@@ -107,7 +115,7 @@ function checkValidation(productName) {
 	return true;
 }
 
-// Return response wehen product not found in message
+// Return response when product not found in message
 function unknowObjectRespones() {
 	return {
 		messages: [
