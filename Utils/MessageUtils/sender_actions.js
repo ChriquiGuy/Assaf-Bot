@@ -19,7 +19,7 @@ exports.markSeen = function(senderId, incomingMeassage) {
 };
 
 // Calaculate amount of time by text length
-function calculateWaitTime(message, read = undefined, time = undefined) {
+function calculateWaitTime(message, read = undefined, time) {
 	console.log('Time = ', time);
 	// If time exiest, return time
 	if (time) return time > 10 ? 10 : time;
