@@ -53,7 +53,7 @@ const sendMessage = function(senderId, response) {
 // Send response tamplate messages to sender
 const sendTemplateMessage = function(senderId, response) {
 	// Mark typing and wait 3 sec before disable typing
-	messengerAction.markTyping(senderId, response, 10);
+	messengerAction.markTyping(senderId, response, 5);
 	messageClient.sendTemplateMessage(senderId, response.templateMessage).then((result) => {
 		`Result sent with: ${result}`;
 	});
