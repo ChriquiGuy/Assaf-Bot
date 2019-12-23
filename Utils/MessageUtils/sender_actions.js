@@ -5,8 +5,7 @@ const facebook = require('fb-messenger-bot-api');
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 // Mark typing and wait 'x' amount of time before disable typing (writing time)
-exports.markTyping = function(senderId, message, time = undefined) {
-	console.log('markTyping Time = ', time);
+exports.markTyping = function(senderId, message, time) {
 	messageClient.toggleTyping(senderId, true);
 	wait.for.time(calculateWaitTime(message, time));
 	messageClient.toggleTyping(senderId, false);
