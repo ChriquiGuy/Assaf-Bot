@@ -1,9 +1,10 @@
 'use strict';
 const nlpDiagnosis = require('../Services/Domain/nlp_diagnosis');
+const staticResponse = require('../Utils/MessageUtils/Templates/Static/respones_templates');
+const staticStrings = require('../Utils/MessageUtils/Templates/Static/strings');
 
 const SPACE = ' ';
 const ACTIONS_FOLDER = process.cwd() + '/Actions';
-const unvalidProduct = [ 'דירה', 'דירת', 'בית', 'נכס', 'דירות' ];
 
 // Get the best matching response to the message
 exports.getResponse = function(messageObject) {
@@ -12,17 +13,17 @@ exports.getResponse = function(messageObject) {
 	// Init search object
 	var serachProduct = {};
 	// Find name from message and insert to object
-	serachProduct.name = getObjectName(messageObject);
+	serachProduct.name = getProductName(messageObject);
 	// Check if an object not found, send unknow object response
 	// Else check if the product is a valid product for search
-	if (!serachProduct.name) return unknowObjectRespones();
+	if (!serachProduct.name) return unknowProductRespones();
 	else if (!checkValidation(serachProduct.name)) return unvalidObjectRespones();
 	// Find price from message and insert to object {from, to}
-	serachProduct.price = getObjectPrice(messageObject);
+	serachProduct.price = getProductPrice(messageObject);
 	// Find shipment from message and insert to object {pick_up, delivery}
-	serachProduct.shipment = getObjectShipment(messageObject);
+	serachProduct.shipment = getProductShipment(messageObject);
 	// Find location from message and insert to object
-	serachProduct.location = getObjectLocation(messageObject);
+	serachProduct.location = getProducrLocation(messageObject);
 	// Creates a text response detailing the product we were asked to search
 	const searchDescription = createSearchDescription(serachProduct);
 	// Add relevant action to this response
@@ -40,17 +41,8 @@ exports.getResponse = function(messageObject) {
 
 // Return random pre message
 function getPreMessage() {
-	const preMessages = [
-		'אני על זה!',
-		'מתחיל בחיפושים!',
-		'אחלה בחירה! מתחיל בחיפושים',
-		'רות עבור',
-		'רות היישר!',
-		'אחלה בחירה',
-		'מגניב, מתחיל בחיפושים'
-	];
 	// Randomize from array of messages and return
-	return preMessages[Math.floor(Math.random() * preMessages.length)];
+	return staticStrings.PreSearchMessage[Math.floor(Math.random() * staticStrings.PreSearchMessage.length)];
 }
 
 // Build a string that describe the product we requested to search
@@ -77,13 +69,13 @@ function createSearchDescription(serachProduct) {
 }
 
 // Return product name from message
-function getObjectName(messageObject) {
+function getProductName(messageObject) {
 	const name = nlpDiagnosis.getEntity(messageObject, 'object');
 	if (name) return name.value;
 }
 
 // Return product price from message
-function getObjectPrice(messageObject) {
+function getProductPrice(messageObject) {
 	const amount_of_money = nlpDiagnosis.getEntity(messageObject, 'amount_of_money');
 	if (amount_of_money && amount_of_money.to && amount_of_money.from) {
 		return { from: amount_of_money.from.value, to: amount_of_money.to.value };
@@ -95,7 +87,7 @@ function getObjectPrice(messageObject) {
 }
 
 // Return product shipment details from message
-function getObjectShipment(messageObject) {
+function getProductShipment(messageObject) {
 	const _pick_up = nlpDiagnosis.getEntity(messageObject, 'pick_up');
 	const _delivery = nlpDiagnosis.getEntity(messageObject, 'delivery');
 	if (_pick_up && !_delivery) return { pick_up: true, delivery: false };
@@ -104,58 +96,23 @@ function getObjectShipment(messageObject) {
 }
 
 // Return product location from message
-function getObjectLocation(messageObject) {
+function getProducrLocation(messageObject) {
 	const location = nlpDiagnosis.getEntity(messageObject, 'location');
 	if (location) return location.value;
 }
 
 // Check if the product is a valid product for search
 function checkValidation(productName) {
-	for (let word of unvalidProduct) if (productName.includes(word)) return false;
+	for (let word of staticStrings.InvalidProduct) if (productName.includes(word)) return false;
 	return true;
 }
 
-// Return response when product not found in message
-function unknowObjectRespones() {
-	return {
-		messages: [
-			'אני מצטער אני חדש בארץ, ולא כל כך הבנתי מה אתה מנסה לחפש',
-			'אשמח אם תוכל לנסות להסביר לי בצורה פשוטה יותר'
-		],
-		actions: [ undefined ]
-	};
+// Return response wehen product not found in message
+function unknowProductRespones() {
+	return staticResponse.UnknownProduct;
 }
 
 // Return response wehen product is not a valid product
 function unvalidObjectRespones() {
-	return {
-		messages: [
-			'אני חושב שהתבלבלת, אני אסף לא דורון',
-			'אם אתה מחפש דירה אני מציע לך לדבר עם חבר שלי דורון, הוא יעזור לך למצוא את דירת החולמות שלך'
-		],
-		templateMessage: {
-			template_type: 'generic',
-			elements: [
-				{
-					title: 'Dooron - דורון חיפוש דירות',
-					image_url:
-						'https://scontent.ftlv5-1.fna.fbcdn.net/v/t1.0-9/49938853_348490665881339_2798763413499543552_n.png?_nc_cat=101&_nc_oc=AQkELNTKCDNF140YxnMLh-UIzqr_mJmUuFpuI7T2dIKZkXr3JWTe6lkBK77TAAaFpBg&_nc_ht=scontent.ftlv5-1.fna&oh=aff791450ba95a804e21f83eae3792e1&oe=5EB2ADD3',
-					subtitle: 'מוצא לך דירה בתל אביב',
-					default_action: {
-						type: 'web_url',
-						url: 'https://www.facebook.com/dorontlv',
-						webview_height_ratio: 'tall'
-					},
-					buttons: [
-						{
-							type: 'web_url',
-							url: 'https://www.facebook.com/dorontlv',
-							title: 'שלח הודעה לדורון!'
-						}
-					]
-				}
-			]
-		},
-		actions: [ undefined ]
-	};
+	return staticResponse.DooronTemplate;
 }

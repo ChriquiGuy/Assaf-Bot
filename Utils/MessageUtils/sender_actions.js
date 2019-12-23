@@ -5,9 +5,9 @@ const facebook = require('fb-messenger-bot-api');
 const messageClient = new facebook.FacebookMessagingAPIClient(process.env.PAGE_ACCESS_TOKEN);
 
 // Mark typing and wait 'x' amount of time before disable typing (writing time)
-exports.markTyping = function(senderId, message) {
+exports.markTyping = function(senderId, message, time = undefined) {
 	messageClient.toggleTyping(senderId, true);
-	wait.for.time(calculateWaitTime(message));
+	wait.for.time(calculateWaitTime(message, time));
 	messageClient.toggleTyping(senderId, false);
 };
 
@@ -19,13 +19,13 @@ exports.markSeen = function(senderId, incomingMeassage) {
 };
 
 // Calaculate amount of time by text length
-function calculateWaitTime(message, read = undefined) {
+function calculateWaitTime(message, read = undefined, time = undefined) {
 	// Get number of words in string
 	const wordCount = message.split(' ').length;
 	// Delay is 0.6(wirte)/0.3(read) sec for word
 	const wordTime = read ? 0.25 : 0.4;
 	// Calculate delay
-	var delay = wordCount * wordTime;
+	var delay = wordCount * (time || wordTime);
 	if (delay > 10) delay = 10;
 	return delay;
 }
