@@ -52,8 +52,9 @@ const sendMessage = function(senderId, response) {
 
 // Send response tamplate messages to sender
 const sendTemplateMessage = function(senderId, response) {
-	// Mark typing and wait 3 sec before disable typing
-	messengerAction.markTyping(senderId, response, 5);
+	const templateTypingDelay = 5;
+	// Mark typing and wait 'x' sec before disable typing
+	messengerAction.markTyping(senderId, response, templateTypingDelay);
 	// Send the HTTP request to the Messenger Platform
 	messageClient.sendTemplateMessage(senderId, response.templateMessage).then((result) => {
 		`Result sent with: ${result}`;
