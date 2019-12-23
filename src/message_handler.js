@@ -54,6 +54,7 @@ const sendMessage = function(senderId, response) {
 const sendTemplateMessage = function(senderId, response) {
 	// Mark typing and wait 3 sec before disable typing
 	messengerAction.markTyping(senderId, response, 5);
+	// Send the HTTP request to the Messenger Platform
 	messageClient.sendTemplateMessage(senderId, response.templateMessage).then((result) => {
 		`Result sent with: ${result}`;
 	});
