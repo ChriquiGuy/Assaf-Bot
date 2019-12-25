@@ -32,9 +32,9 @@ c.queue([
 				console.log(error);
 			} else {
 				const root = HTMLParser.parse(res.body);
-				console.log('Root : ', root);
-				// console.log('First Child : ', root.firstChild.structure);
-				console.log('query #list: \n', root.querySelector('#list'));
+				// console.log('Root : ', root);
+				console.log('First Child : ', root.firstChild.querySelectorAll('#__nuxt').structure);
+				// console.log('query #feed_item: \n', root.querySelector('#__nuxt'));
 			}
 			done();
 		}
